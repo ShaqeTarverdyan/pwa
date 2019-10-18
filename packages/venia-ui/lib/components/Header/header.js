@@ -7,6 +7,7 @@ import { Link, resourceUrl, Route } from '@magento/venia-drivers';
 import CartTrigger from './cartTrigger';
 import NavTrigger from './navTrigger';
 import SearchTrigger from './searchTrigger';
+import TopBar from './topBar';
 import OnlineIndicator from './onlineIndicator';
 import { useHeader } from '@magento/peregrine/lib/talons/Header/useHeader';
 
@@ -48,6 +49,9 @@ const Header = props => {
 
     return (
         <header className={rootClass}>
+            <div className={classes.topBar}>
+                <TopBar />
+            </div>
             <div className={classes.toolbar}>
                 <div className={classes.primaryActions}>
                     <NavTrigger />

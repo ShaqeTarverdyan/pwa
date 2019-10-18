@@ -2,5 +2,7 @@ query storeConfigData {
     storeConfig {
         id
         copyright
+        pwa_header_telephone
+        pwa_header_promotion
     }
 }

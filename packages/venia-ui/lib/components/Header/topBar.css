@@ -1,0 +1,28 @@
+.root {
+    font-family: var(--pwa-font);
+    max-width: var(--pwa-desktop-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 17px 0px;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.06em;
+    font-weight: 100;
+}
+
+.promotion {
+    text-align: center;
+    color:  var(--pwa-red);
+}
+
+@media (min-width: 601px) and (max-width: 1239px){
+    .root {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 17px 1rem;
+    }
+
+    .promotion {
+        text-align: right;
+    }      
+}
