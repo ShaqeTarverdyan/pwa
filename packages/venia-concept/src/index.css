@@ -19,6 +19,16 @@
     src: local('Roboto Bold'), url(./fonts/RobotoCondensed/RobotoCondensed-Bold.ttf);
 }
 
+@font-face {
+    font-family: "pwa_icons";
+    src:url("./fonts/pwa/pwa.eot");
+    src:url("./fonts/pwa/pwa.svg") format("svg"),
+      url("./fonts/pwa/pwa.ttf") format("truetype"),
+      url("./fonts/pwa/pwa.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+
 :root {
     --venia-anim-bounce: cubic-bezier(0.5, 1.8, 0.9, 0.8);
     --venia-anim-in: cubic-bezier(0, 0, 0.2, 1);
@@ -45,7 +55,10 @@
     --venia-warning-dark: 249, 93, 94;
     --venia-warning-light: 254, 229, 232;
     --pwa-desktop-max-width: 1240px;
-    --pwa-red: #FF173E;
+    --pwa-red: 255, 23, 62;
+    --pwa-border: 220, 219, 219;
+    --pwa-icon-color: 77, 77, 77;
+    --pwa-blue: 1, 117, 219;
 }
 
 html {
