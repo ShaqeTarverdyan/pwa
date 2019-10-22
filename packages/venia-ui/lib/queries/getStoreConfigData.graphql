@@ -4,5 +4,9 @@ query storeConfigData {
         copyright
         pwa_header_telephone
         pwa_header_promotion
+        header_logo_src
+        logo_alt
+        logo_height
+        logo_width
     }
 }

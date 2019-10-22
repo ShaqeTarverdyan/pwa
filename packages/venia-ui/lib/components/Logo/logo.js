@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mergeClasses } from '../../classify';
-import logo from './logo.svg';
-
+import defaultLogo from './logo.svg';
+import { useLogo } from '@magento/peregrine/lib/talons/Logo/useLogo';
+import GET_STORE_CONFIG_DATA from '../../queries/getStoreConfigData.graphql';
+import { resourceUrl } from '@magento/venia-drivers';
+import LoadingIndicator from '../LoadingIndicator';
 /**
  * A component that renders a logo in the header.
  *
@@ -17,15 +20,39 @@ const Logo = props => {
     const { height } = props;
     const classes = mergeClasses({}, props.classes);
 
-    return (
+    const talonProps = useLogo({
+        query: GET_STORE_CONFIG_DATA
+    });
+    const {
+        logo_src,
+        logo_alt,
+        logo_height,
+        logo_width
+    } = talonProps;
+
+    if(typeof logo_src === 'undefined') {
+        return <LoadingIndicator />;
+    }
+    
+    return logo_src ? (
         <img
             className={classes.logo}
-            src={logo}
+            src={resourceUrl('logo/' + logo_src, {
+                type: 'image-wysiwyg',
+                height: height
+            })}
+            alt={logo_alt}
+            title={logo_alt}
+            height={logo_height}
+            width={logo_width}
+        />
+    ) : <img
+            className={classes.logo}
+            src={defaultLogo}
             height={height}
             alt="Venia"
             title="Venia"
-        />
-    );
+        />;
 };
 
 /**
