@@ -1,5 +1,5 @@
 import React from 'react';
-import { shape, string } from 'prop-types';
+import { shape, string, func } from 'prop-types';
 import { Form } from 'informed';
 
 import { mergeClasses } from '../../classify';

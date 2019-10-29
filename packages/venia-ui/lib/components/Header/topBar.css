@@ -16,7 +16,7 @@
     color:  rgb(var(--pwa-red));
 }
 
-@media (min-width: 601px) and (max-width: 1239px){
+@media (min-width: 701px) and (max-width: 1239px){
     .root {
         grid-template-columns: repeat(2, 1fr);
         padding: 17px 1rem;
