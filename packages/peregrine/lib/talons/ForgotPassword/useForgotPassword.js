@@ -8,7 +8,7 @@ import { useUserContext } from '@magento/peregrine/lib/context/user';
 export const useForgotPassword = props => {
     const [{ isResettingPassword }, { resetPassword }] = useUserContext();
 
-    const { onClose } = props;
+    const { onClose, showCreateAccount  } = props;
 
     const [inProgress, setInProgress] = useState(false);
     const [forgotPasswordEmail, setForgotPasswordEmail] = useState(null);
@@ -27,11 +27,16 @@ export const useForgotPassword = props => {
         onClose();
     }, [onClose]);
 
+    const handleCreateAccount = useCallback(() => {
+        showCreateAccount();
+    }, [ showCreateAccount]);
+
     return {
         forgotPasswordEmail,
         handleContinue,
         handleFormSubmit,
         inProgress,
-        isResettingPassword
+        isResettingPassword,
+        handleCreateAccount
     };
 };
