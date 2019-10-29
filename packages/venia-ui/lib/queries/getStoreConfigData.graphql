@@ -8,5 +8,16 @@ query storeConfigData {
         logo_alt
         logo_height
         logo_width
+        pwa_homepage_top_slider
+        pwa_homepage_top_banner
+        pwa_homepage_bottom_banner_left
+        pwa_homepage_bottom_banner_right
+        pwa_footer_about_us_text
+    	pwa_footer_left_column_block
+        pwa_footer_right_column_block
+      	pwa_footer_middle_column_block
+      	pwa_social_facebook_page_url
+      	pwa_social_linkedin_page_url
+      	pwa_social_instagram_page_url
     }
 }
