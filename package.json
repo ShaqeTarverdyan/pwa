@@ -92,7 +92,8 @@
       "pre-push": "yarn run prettier:validate && yarn run lint"
     }
   },
-  "bundlesize": [{
+  "bundlesize": [
+    {
       "path": "./packages/venia-concept/dist/{client,vendors,sw}?(.)*.js",
       "maxSize": "250 kB"
     },
@@ -104,5 +105,8 @@
       "path": "./packages/venia-concept/dist/+([0-9]).*.js",
       "maxSize": "100 kB"
     }
-  ]
+  ],
+  "dependencies": {
+    "pure-react-carousel": "~1.23.0"
+  }
 }
