@@ -1,22 +1,23 @@
 .root {
+    font-family: var(--pwa-font);
     composes: root from '../clickable.css';
-    background: none;
-    border: 1px solid rgb(var(--color));
-    border-radius: 1.5rem;
-    color: rgb(var(--color));
-    font-size: 0.75rem;
-    font-weight: 600;
-    height: 2rem;
-    min-width: 7.5rem;
-    padding: 0 1rem;
+    background:none;
+    border: 1px solid white;
+    border-radius: 31px;
+    color: white;
+    height: 32px;
     transition-duration: 384ms;
-    transition-property: background-color, color;
     transition-timing-function: var(--venia-anim-standard);
-    --color: var(--venia-text);
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
 }
 
 .filled {
-    background-color: rgb(var(--color));
+    background-color: rgb(var(--pwa-blue));
     color: white;
 }
 
@@ -55,17 +56,34 @@
 
 .root_lowPriority {
     composes: root;
-    border-width: 0;
-    text-decoration: underline;
+    text-decoration: none;
+    color: rgb(var(--pwa-blue));
+    font-weight: 300;
+    text-transform: capitalize
+
 }
 
 .root_lowPriority:focus {
     box-shadow: none;
+    border: none;
 }
 
 .root_normalPriority {
     composes: root;
+    border: 2px solid rgb(var(--pwa-blue));
+    color: rgb(var(--pwa-blue))
 }
 .root_highPriority {
     composes: root filled;
+}
+
+@media(min-width:700px) {
+    .root {
+        font-size: 16px;
+        height: 38px;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 19px;
+        letter-spacing: 0.02em;
+    }
 }
