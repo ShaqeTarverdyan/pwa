@@ -4,7 +4,7 @@ import cmsPageQuery from '../../queries/getCmsPage.graphql';
 import { fullPageLoadingIndicator } from '../../components/LoadingIndicator';
 import RichContent from '../../components/RichContent';
 import { number } from 'prop-types';
-import CategoryList from '../../components/CategoryList';
+import Home from '../../components/Home';
 
 const CMSPage = props => {
     const { id } = props;
@@ -35,8 +35,11 @@ const CMSPage = props => {
         ) {
             return <RichContent html={data.cmsPage.content} />;
         }
-
-        return <CategoryList title="Shop by category" id={2} />;
+        return (
+            <div>
+                <Home />
+            </div>
+        );
     }
     return null;
 };
