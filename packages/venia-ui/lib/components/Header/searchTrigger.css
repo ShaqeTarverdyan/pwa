@@ -4,10 +4,30 @@
     transition-duration: 224ms;
     transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
     height: 3rem;
-    width: 3rem;
+    outline: none;
 }
 
 .open {
     composes: root;
     color: rgb(var(--venia-teal));
+}
+
+.iconSearch {
+    padding-bottom: 5px;
+}
+
+.iconSearch:before {
+    font-family: 'pwa_icons';
+    color: rgb(var(--pwa-icon-color));
+    font-size: 19px;
+    content: "\64";
+    font-weight: bold;
+}
+
+
+@media (min-width: 700px) {
+    .iconSearch:before {
+        font-size: 25px;
+        font-weight: normal;
+    }
 }

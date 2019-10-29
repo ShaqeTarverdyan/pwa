@@ -1,8 +1,6 @@
 import React from 'react';
 import { shape, string } from 'prop-types';
-import { Search as SearchIcon } from 'react-feather';
 
-import Icon from '../Icon';
 
 import { mergeClasses } from '../../classify';
 import defaultClasses from './searchTrigger.css';
@@ -23,7 +21,7 @@ const SearchTrigger = props => {
             aria-label={'Search'}
             onClick={handleClick}
         >
-            <Icon src={SearchIcon} />
+            <span className={classes.iconSearch}/>
         </button>
     );
 };
