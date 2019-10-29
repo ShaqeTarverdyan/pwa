@@ -1,0 +1,60 @@
+.root {
+  
+}
+.top {
+  display: grid;
+  grid-row-gap: 18px;
+}
+
+.slider {
+  position: relative;
+}
+
+.banners {
+  display: grid;
+  grid-row-gap: 21px;
+}
+
+.topBanner {
+  position: relative;
+  overflow: hidden;
+}
+
+.bottomBanner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 21px;
+}
+
+@media(min-width: 700px) {
+  .top {
+    max-width: 1240px;
+    margin: 0 auto; 
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    height: 778px;
+    width: 100%;
+  }
+
+  .slider {
+    /* height: 778px; */
+  }
+  .topBanner {
+    height: 461px;
+  }
+  
+  .bottomBanner {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    height: 296px;
+  }
+  
+  .bannerButton {
+    composes: root_highPriority from '../Button/button.css';
+    position: absolute;
+    bottom: 15%;
+    left: 39%;
+    width: 22%;
+  }
+  
+}
