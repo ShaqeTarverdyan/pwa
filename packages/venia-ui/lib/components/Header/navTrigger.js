@@ -1,8 +1,6 @@
 import React from 'react';
 import { node, shape, string } from 'prop-types';
-import { Menu as MenuIcon } from 'react-feather';
 
-import Icon from '../Icon';
 import { mergeClasses } from '../../classify';
 import defaultClasses from './navTrigger.css';
 import { useNavigationTrigger } from '@magento/peregrine/lib/talons/Header/useNavigationTrigger';
@@ -20,7 +18,7 @@ const NavigationTrigger = props => {
             aria-label="Toggle navigation panel"
             onClick={handleOpenNavigation}
         >
-            <Icon src={MenuIcon} />
+            <span className={classes.iconMenu}/>
         </button>
     );
 };

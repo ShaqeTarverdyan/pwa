@@ -1,5 +1,13 @@
 .root {
     composes: root from '../clickable.css';
-    height: 3rem;
-    width: 3rem;
+}
+
+.iconMenu {
+    padding-bottom: 5px;
+}
+
+.iconMenu:before {
+    font-family: 'pwa_icons';
+    font-size: 18px;
+    content: "\71";
 }
