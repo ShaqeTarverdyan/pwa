@@ -1,10 +1,75 @@
 .root {
     composes: root from '../clickable.css';
-    height: 3rem;
-    min-width: 3rem;
+    position: relative;
+    width: 47px;
+    height: 47px;
+    padding-right: 5px;
+}
+
+.root button {
+    margin-bottom: 4px;
 }
 
 .counter {
     font-weight: 600;
-    margin-left: 0.3rem;
+    margin-left: 0.5rem;
+}
+
+.iconCart:before {
+    font-family: 'pwa_icons';
+    font-size: 19px;
+    line-height: 31px;
+    content: "\66";
+}
+
+.itemCounter {
+    font-family: var(--pwa-font);
+    width: 15px;
+    height: 15px;
+    justify-content: center;
+    background-color: rgb(var(--pwa-red));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 9px;
+    line-height: 11px;
+    position: absolute;
+    top: 0;
+    right: 3px;
+}
+
+.itemCounter_close {
+    composes: itemCounter;
+    display: none;
+}
+
+@media (min-width: 700px) {
+    .root {
+        width: 60px;
+        height: 60px;
+        padding-right: 0px;
+    }
+
+    .root button {
+        padding-right: 12px;
+        margin-bottom: 8px;
+        color: inherit;
+        outline: none;
+    }
+
+    .itemCounter {
+        width: 22px;
+        height: 22px;
+        font-size: 12px;
+        line-height: 14px;
+        right: 0;
+    }
+
+    .iconCart:before {
+        font-size: 25px;
+        line-height: 31px;
+    }
 }

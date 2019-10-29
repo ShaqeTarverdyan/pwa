@@ -1,9 +1,10 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect} from 'react';
 import { useCartContext } from '@magento/peregrine/lib/context/cart';
 
 export const useCartTrigger = () => {
     const [{ details }, { getCartDetails, toggleCart }] = useCartContext();
     const { items_qty: itemCount } = details;
+
 
     useEffect(() => {
         getCartDetails();
@@ -15,6 +16,6 @@ export const useCartTrigger = () => {
 
     return {
         handleClick,
-        itemCount
+        itemCount,
     };
 };
