@@ -8,14 +8,14 @@ const Field = props => {
     const { children, id, label, required } = props;
     const classes = mergeClasses(defaultClasses, props.classes);
     const requiredSymbol = required ? (
-        <span className={classes.requiredSymbol} />
+        <span className={classes.requiredSymbol}>*</span>
     ) : null;
 
     return (
         <div className={classes.root}>
             <label className={classes.label} htmlFor={id}>
-                {requiredSymbol}
                 {label}
+                {requiredSymbol}
             </label>
             {children}
         </div>
