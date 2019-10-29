@@ -7,9 +7,13 @@ import { Link, resourceUrl, Route } from '@magento/venia-drivers';
 import CartTrigger from './cartTrigger';
 import NavTrigger from './navTrigger';
 import SearchTrigger from './searchTrigger';
+import AccountTrigger from './accountTrigger';
 import TopBar from './topBar';
 import OnlineIndicator from './onlineIndicator';
 import { useHeader } from '@magento/peregrine/lib/talons/Header/useHeader';
+import MiniCart from '../MiniCart';
+import { useWindowSize } from '@magento/peregrine';
+import NavigationDesktop from '../Navigation';
 
 import { mergeClasses } from '../../classify';
 import defaultClasses from './header.css';
@@ -21,9 +25,11 @@ const Header = props => {
         handleSearchTriggerClick,
         hasBeenOffline,
         isOnline,
-        searchOpen
+        searchOpen,
     } = useHeader();
 
+    const windowSize = useWindowSize();
+    const isMobile = windowSize.innerWidth <= 700;
     const classes = mergeClasses(defaultClasses, props.classes);
     const rootClass = searchOpen ? classes.open : classes.closed;
     const searchBarFallback = (
@@ -33,12 +39,13 @@ const Header = props => {
             </div>
         </div>
     );
-    const searchBar = searchOpen ? (
+
+    const searchBar = searchOpen || !isMobile ? (
         <Suspense fallback={searchBarFallback}>
             <Route
                 render={({ history, location }) => (
                     <SearchBar
-                        isOpen={searchOpen}
+                        isOpen={searchOpen || !isMobile}
                         history={history}
                         location={location}
                     />
@@ -52,26 +59,47 @@ const Header = props => {
             <div className={classes.topBar}>
                 <TopBar />
             </div>
-            <div className={classes.toolbar}>
-                <div className={classes.primaryActions}>
+            <div className={classes.mainHeader}>
+                <div className={classes.logo}>
+                    <Link to={resourceUrl('/')}>
+                        <Logo />
+                    </Link>
+                    <OnlineIndicator
+                        hasBeenOffline={hasBeenOffline}
+                        isOnline={isOnline}
+                    />
+                </div>
+                <div className={classes.navTrigger}>
                     <NavTrigger />
                 </div>
-                <OnlineIndicator
-                    hasBeenOffline={hasBeenOffline}
-                    isOnline={isOnline}
-                />
-                <Link to={resourceUrl('/')}>
-                    <Logo classes={{ logo: classes.logo }} />
-                </Link>
-                <div className={classes.secondaryActions}>
-                    <SearchTrigger
-                        active={searchOpen}
-                        onClick={handleSearchTriggerClick}
-                    />
-                    <CartTrigger />
+                <div className={classes.actions}>
+                    <div className={classes.searchbardesktop}>
+                        {!isMobile && searchBar}
+                    </div>
+                    <div className={classes.searchBarMobile}>
+                        <SearchTrigger
+                            active={searchOpen}
+                            onClick={handleSearchTriggerClick}
+                        />
+                    </div>
+                    <div className={classes.accountTrigger}>
+                        <AccountTrigger />
+                    </div>
+                    <div className={classes.cart}>
+                        <div className={classes.cartTrigger}>
+                            <CartTrigger />
+                        </div>
+                        <div className={classes.miniCartDesktop}>
+                            <MiniCart isOpen={true}/>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            {searchBar}
+            {isMobile && searchBar}
+            <div className={classes.navigationDesktop}>
+                <NavigationDesktop/>
+            </div>
         </header>
     );
 };
@@ -83,7 +111,19 @@ Header.propTypes = {
         open: string,
         primaryActions: string,
         secondaryActions: string,
-        toolbar: string
+        toolbar: string,
+        searchFallback: string,
+        topBar: string, 
+        mainHeader: string,
+        navTrigger: string,
+        actions: string,
+        searchbardesktop: string,
+        searchBarMobile: string,
+        accountTrigger: string,
+        cart: string,
+        cartTrigger: string,
+        miniCartDesktop: string,
+        navigationDesktop: string 
     })
 };
 

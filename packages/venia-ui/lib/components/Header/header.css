@@ -1,5 +1,4 @@
 .root {
-    box-shadow: 0 1px rgb(var(--venia-border));
     display: grid;
     grid-auto-columns: 100%;
     grid-auto-flow: row;
@@ -17,91 +16,129 @@
     composes: root;
 }
 
-.toolbar {
-    align-content: center;
-    align-items: center;
-    display: grid;
-    grid-template-areas: 'primary title secondary';
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: 3rem;
-    justify-items: center;
-    min-height: 3.5rem;
-    padding: 0 1rem;
-}
-
-.logo {
-    grid-area: title;
-    width: 3rem;
-}
-
-.primaryActions {
-    grid-area: primary;
-    justify-self: start;
-}
-
-.secondaryActions {
-    grid-area: secondary;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: end;
-}
-
-.searchFallback {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0.5rem;
-    padding: 0 1rem;
-}
-
-.input {
-    composes: input from '../TextInput/textInput.css';
-    max-width: 24rem;
-}
-
-.loader,
-.loader:before,
-.loader:after {
-    --dot-size: 2em;
-    --dot-font-size: 6px;
-    --dot-shadow-offset: calc(-1 * var(--dot-size) + var(--dot-font-size));
-    border-radius: 50%;
-    width: var(--dot-size);
-    height: var(--dot-size);
-    animation: pulse 1.8s infinite ease-in-out;
-    animation-fill-mode: both;
-}
-
-.loader {
-    color: rgb(var(--venia-grey-dark));
-    font-size: var(--dot-font-size);
-    margin: var(--dot-shadow-offset) auto 0;
-    position: relative;
-    transform: translateZ(0);
-    animation-delay: -0.16s;
-}
-
-.loader:before,
-.loader:after {
-    content: '';
-    position: absolute;
-    top: 0;
-}
-
-.loader:before {
-    color: rgb(var(--venia-grey));
-    left: -3.5em;
-    animation-delay: -0.32s;
-}
-
-.loader:after {
-    color: rgb(var(--venia-grey-darker));
-    left: 3.5em;
-}
-
 .topBar {
     display: none;
 } 
+
+.mainHeader {
+    display: grid;
+    grid-template-areas: 'menu logo actions';
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    padding-top: 10px;
+}
+
+.actions {
+    display: grid;
+    grid-area: actions;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cartTrigger {
+    composes: root from '../clickable.css';
+    position: relative;
+    padding: 5px 0px;
+    display: flex;
+    justify-content: center;;
+    padding-top: 13px;
+    padding-left: 5px;
+    height: 38px;
+    width: 55px;
+}
+
+.logo {
+    grid-area: logo;
+    text-align: center;
+    padding-bottom: 4px; 
+}
+
+/* .logo img {
+    height: 21px;
+} */
+
+.navTrigger {
+    grid-area: menu;
+    margin-left: 25px;
+}
+
+.searchbardesktop {
+    display: none;
+}
+
+.searchBarMobile {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.accountTrigger,  .miniCartDesktop, .navigationDesktop {
+    display: none;
+}
+
+
+@media (min-width: 700px) {
+    .topBar {
+        display: initial;
+        border-bottom: 1px solid #DCDBDB;
+    }
+
+    .searchBarMobile {
+        display: none;
+    }
+
+    .searchbardesktop, .accountTrigger {
+        display: initial;
+    }
+
+    .mainHeader {
+        max-width: var(--pwa-desktop-max-width);
+        grid-template-areas: 'logo actions';
+        margin: 0 auto;
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 47px 0px 25px 0px;
+    }
+
+    .actions {
+        grid-template-columns: 12fr 1fr 1fr;
+        align-items: center;
+    }
+
+    .logo {
+        margin-bottom: 12px;
+        text-align: start;
+        padding-bottom: 0px;
+    }
+    
+    .navTrigger {
+        display: none;
+    }
+
+    .cartTrigger {
+        height: 41px;
+    }
+
+    .cart {
+        position: relative;
+    }
+
+    .cart:hover .miniCartDesktop {
+        display: block;
+        position: absolute;
+        right: 0;
+        width: 591px;
+        min-height: 310px;
+        box-shadow: 0 3px 10px -5px;
+        top: 45px;
+        z-index: 1;
+        background-color: white;
+    }
+
+    .navigationDesktop {
+        display: initial;
+        width: 1240px;
+        margin: 4px auto;
+    }
+}
 
 @keyframes pulse {
     0%,
@@ -111,12 +148,5 @@
     }
     40% {
         box-shadow: 0 var(--dot-size) 0 0;
-    }
-}
-
-@media (min-width: 600px) {
-    .topBar {
-        display: initial;
-        border-bottom: 1px solid #DCDBDB;
     }
 }
