@@ -27,7 +27,7 @@ const Banner = props => {
     },[])
     return typeof banner != 'undefined' ? (
         <div className={classes[banner.hover_effect]}>
-            <div>
+            <div style={{position:'relative'}}>
                 <img
                     src={banner.image_path}
                     alt={banner.title}

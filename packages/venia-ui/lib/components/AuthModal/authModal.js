@@ -28,6 +28,7 @@ const AuthModal = props => {
                 <CreateAccount
                     initialValues={{ email: username }}
                     onSubmit={handleCreateAccount}
+                    showSignIn={props.showSignIn}
                 />
             );
             break;
@@ -37,6 +38,7 @@ const AuthModal = props => {
                 <ForgotPassword
                     initialValues={{ email: username }}
                     onClose={handleClose}
+                    showCreateAccount={props.showCreateAccount}
                 />
             );
             break;
@@ -70,7 +72,6 @@ AuthModal.propTypes = {
     }),
     showCreateAccount: func.isRequired,
     showForgotPassword: func.isRequired,
-    showMainMenu: func.isRequired,
     showMyAccount: func.isRequired,
     view: string.isRequired
 };
