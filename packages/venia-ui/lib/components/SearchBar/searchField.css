@@ -1,0 +1,15 @@
+.input {
+    border-radius: 23px;
+}
+
+.iconSearch {
+    padding-top: 2px;
+    padding-right: 2px;
+}
+
+.iconSearch:before {
+    font-family: 'pwa_icons';
+    color: rgb(153, 153, 153);
+    font-size: 25px;
+    content: "\64";
+}
