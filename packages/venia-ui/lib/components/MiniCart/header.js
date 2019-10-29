@@ -23,10 +23,10 @@ const Header = props => {
 
     return (
         <div className={classes.root}>
-            <h2 className={classes.title}>{title}</h2>
             <Trigger action={handleClick}>
                 <Icon src={CloseIcon} />
             </Trigger>
+            <h2 className={classes.title}>{title}</h2>
         </div>
     );
 };

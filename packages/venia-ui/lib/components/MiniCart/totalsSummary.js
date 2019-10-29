@@ -9,30 +9,24 @@ import defaultClasses from './totalsSummary.css';
 
 const TotalsSummary = props => {
     // Props.
-    const { currencyCode, numItems, subtotal } = props;
+    const { currencyCode, subtotal } = props;
 
     // Members.
     const classes = mergeClasses(defaultClasses, props.classes);
     const hasSubtotal = Boolean(subtotal);
-    const numItemsText = numItems === 1 ? 'item' : 'items';
 
     return (
         <div className={classes.root}>
             {hasSubtotal && (
-                <dl className={classes.totals}>
-                    <dt className={classes.subtotalLabel}>
-                        <span>
-                            {'Cart Total : '}
-                            <Price
-                                currencyCode={currencyCode}
-                                value={subtotal}
-                            />
-                        </span>
-                    </dt>
-                    <dd className={classes.subtotalValue}>
-                        ({numItems} {numItemsText})
-                    </dd>
-                </dl>
+                <div className={classes.totals}>
+                    <span>Cart SubTotal</span>
+                    <span>
+                        <Price
+                            currencyCode={currencyCode}
+                            value={subtotal}
+                        />
+                    </span>
+                </div>
             )}
         </div>
     );

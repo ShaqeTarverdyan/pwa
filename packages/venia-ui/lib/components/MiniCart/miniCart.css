@@ -1,4 +1,4 @@
-.root {
+.root_mobile {
     --base-z-index: 4;
     --minicart-header-height: 3.5rem;
     align-content: start;
@@ -19,17 +19,37 @@
     transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
     visibility: hidden;
     width: 100%;
-    max-width: 360px;
+    max-width: 269px;
     z-index: var(--base-z-index);
 }
 
 /* state: open */
 
 .root_open {
-    composes: root;
+    composes: root_mobile ;
     opacity: 1;
     transform: translate3d(0, 0, 0);
     transition-duration: 224ms;
     transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
     visibility: visible;
 }
+
+@media(min-width: 700px) {
+    .root_desktop {
+        display: grid;
+        /* grid-template-rows: minmax(385px, 1fr); */
+        --base-z-index: 4;
+        align-content: start;
+        background-color: white;
+        box-shadow: -1px 0 rgb(var(--venia-border));
+        /* min-height: 310px; */
+        opacity: 1;
+        overflow: hidden;
+        visibility: visible;
+        width: 100%;
+        z-index: var(--base-z-index);
+        padding: 20px;
+    }
+}
+
+

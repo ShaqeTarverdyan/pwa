@@ -8,7 +8,6 @@ import defaultClasses from './productList.css';
 
 const ProductList = props => {
     const {
-        beginEditItem,
         cartItems,
         currencyCode,
         removeItemFromCart
@@ -19,7 +18,6 @@ const ProductList = props => {
             cartItems.map(product => {
                 return (
                     <Product
-                        beginEditItem={beginEditItem}
                         currencyCode={currencyCode}
                         item={product}
                         key={product.item_id}
@@ -27,7 +25,7 @@ const ProductList = props => {
                     />
                 );
             }),
-        [beginEditItem, cartItems, currencyCode, removeItemFromCart]
+        [cartItems, currencyCode, removeItemFromCart]
     );
 
     const classes = mergeClasses(defaultClasses, props.classes);
@@ -36,7 +34,6 @@ const ProductList = props => {
 };
 
 ProductList.propTypes = {
-    beginEditItem: func,
     cartItems: array,
     classes: shape({
         root: string

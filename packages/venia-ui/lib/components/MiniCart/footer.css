@@ -1,6 +1,9 @@
 .root {
     background-color: white;
     padding: 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
 }
 
 .root_open {
@@ -11,4 +14,11 @@
 .placeholderButton {
     text-align: center;
     margin: 1.5rem 0 1rem 0;
+}
+
+.buttonGroup {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 10px;
+    padding: 10px;
 }
