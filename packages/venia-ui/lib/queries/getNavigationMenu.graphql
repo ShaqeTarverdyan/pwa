@@ -2,9 +2,12 @@ query navigationMenu($id: Int!) {
   category(id: $id) {
     id
     name
+    level
     children {
       children_count
       id
+      level
+      label
       include_in_menu
       name
       position
