@@ -33,20 +33,25 @@ const Tree = props => {
         const [id, { category, isLeaf }] = childCategory;
 
         return isLeaf ? (
-            <Leaf key={id} category={category} onNavigate={onNavigate} />
-        ) : (
-            <Branch
+            <Leaf
                 key={id}
                 category={category}
-                setCategoryId={setCategoryId}
+                onNavigate={onNavigate}
             />
-        );
+        ) : (
+                <Branch
+                    key={id}
+                    category={category}
+                    setCategoryId={setCategoryId}
+                    onNavigate={onNavigate}
+                    updateCategories={updateCategories}
+                    categories={categories}
+                />
+            );
     });
 
     return (
-        <div className={classes.root}>
-            <ul className={classes.tree}>{branches}</ul>
-        </div>
+        <ul className={classes.tree}>{branches}</ul>
     );
 };
 
