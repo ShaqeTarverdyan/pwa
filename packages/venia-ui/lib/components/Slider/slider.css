@@ -1,0 +1,73 @@
+.root  {
+    position: relative;
+}
+
+.buttonGroup {
+    width: 88%;
+    height: 50px;
+    bottom: 45%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    left: 50%;
+    top: 7.6%;
+    transform: translate(-50%,-50%);
+}
+
+.leftIcon::before {
+    font-family: 'pwa_icons';
+    content: "\67";
+    padding: 20px;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.rigthIcon::before {
+    font-family: 'pwa_icons';
+    content: "\68";
+    padding: 20px;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.content {
+	position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+	left: 0;
+	display: flex;
+}
+
+
+.content.bottom_center {
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.content.middle_center {
+	align-items: center;
+	justify-content: center;
+}
+
+@media (min-width: 700px) {
+    .root  {
+        position: relative;
+    }
+
+    .buttonGroup {
+        width: 95%;
+        top: 50%;
+    }
+
+    .leftIcon::before, .rigthIcon::before  {
+        padding:25px;
+        font-size: 30px;
+    }
+
+    .buttonGroup {
+        height: 79px;
+    }
+    
+}

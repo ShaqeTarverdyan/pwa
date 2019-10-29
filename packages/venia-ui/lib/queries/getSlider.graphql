@@ -1,0 +1,15 @@
+query slider($id: Int!) {
+    slider(id: $id) {
+        id
+        title
+        slides {
+            id
+            title
+            image_url
+            image_path
+            content
+            content_position
+            content_appear_animation
+        }
+    }
+}
