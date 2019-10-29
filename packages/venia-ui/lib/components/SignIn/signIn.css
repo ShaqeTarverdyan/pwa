@@ -1,20 +1,27 @@
 .root {
     display: grid;
-    gap: 1.5rem;
     justify-items: stretch;
     padding: 1rem 1.5rem;
 }
 
-.forgotPassword {
-    display: block;
-    text-decoration: underline;
-    color: rgb(var(--venia-error));
-    font-size: 0.8rem;
+.title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.06em;
+    color: #000000;
+    padding-bottom: 40px;
 }
 
 .form {
     display: grid;
-    row-gap: 1rem;
+}
+
+.form input {
+    border-radius: 0px;
+    height: 30px;
+    border: 1px solid rgb(var(--pwa-blue));
 }
 
 .modal {
@@ -33,22 +40,36 @@
     opacity: 0.9;
 }
 
-.createAccountButton,
-.forgotPasswordButton,
-.signInButton {
+.signinButton {
+    composes: root_highPriority from '../Button/button.css';
     align-items: center;
     display: flex;
     justify-content: center;
     text-align: center;
+    margin-top: 1rem;
+    width: 100%
 }
 
-.forgotPasswordButtonRoot {
+.forgotPassword {
+    display: block;
+    color: rgb(var(--venia-error));
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+.forgotPasswordButton {
     composes: root_lowPriority from '../Button/button.css';
     color: rgb(var(--venia-error));
 }
 
-.signInButton {
-    margin-top: 1rem;
+ .createAccount{
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.createAccountButton {
+    composes: root_highPriority from '../Button/button.css';
+    width: 100%;
 }
 
 .signInDivider {

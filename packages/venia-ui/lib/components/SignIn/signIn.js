@@ -1,5 +1,5 @@
 import React from 'react';
-import { func, shape, string } from 'prop-types';
+import { shape, string } from 'prop-types';
 import { Form } from 'informed';
 
 import { mergeClasses } from '../../classify';
@@ -34,12 +34,13 @@ const SignIn = props => {
 
     return (
         <div className={classes.root}>
+            <p className={classes.title}>Sign in to your account</p>
             <Form
                 ref={formRef}
                 className={classes.form}
                 onSubmit={handleSubmit}
             >
-                <Field label="Email" required={true}>
+                <Field label="Login or Email" required={true}>
                     <TextInput
                         autoComplete="email"
                         field="email"
@@ -55,30 +56,33 @@ const SignIn = props => {
                     />
                 </Field>
                 <div className={classes.signInError}>{errorMessage}</div>
-                <div className={classes.signInButton}>
-                    <Button priority="high" type="submit">
+                <div>
+                    <Button priority="high" type="submit" classes={{root_highPriority: classes.signinButton}}>
                         {'Sign In'}
                     </Button>
                 </div>
             </Form>
-            <div className={classes.forgotPasswordButton}>
+            <div className={classes.forgotPassword}>
                 <Button
                     priority="low"
                     type="button"
                     onClick={handleForgotPassword}
                     classes={{
-                        root_lowPriority: classes.forgotPasswordButtonRoot
+                        root_lowPriority: classes.forgotPasswordButton
                     }}
                 >
                     {'Forgot Password?'}
                 </Button>
             </div>
-            <div className={classes.signInDivider} />
-            <div className={classes.createAccountButton}>
+            <div className={classes.createAccount}>
+                <p>new Customer?</p>
                 <Button
-                    priority="normal"
+                    priority="high"
                     type="button"
                     onClick={handleCreateAccount}
+                    classes={{
+                        root_highPriority: classes.createAccountButton
+                    }}
                 >
                     {'Create an Account'}
                 </Button>
@@ -93,12 +97,14 @@ SignIn.propTypes = {
     classes: shape({
         createAccountButton: string,
         form: string,
+        forgotPassword: string,
         forgotPasswordButton: string,
-        forgotPasswordButtonRoot: string,
+        createAccount: string,
         root: string,
         signInButton: string,
         signInDivider: string,
-        signInError: string
+        signInError: string,
+        modal_active: string
     }),
     setDefaultUsername: func.isRequired,
     showCreateAccount: func.isRequired,
