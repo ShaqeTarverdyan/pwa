@@ -6,6 +6,7 @@ import Main from '../Main';
 import Mask from '../Mask';
 import MiniCart from '../MiniCart';
 import Navigation from '../Navigation';
+import AccountPopup from '../AccountPopup';
 import renderRoutes from './renderRoutes';
 
 import ToastContainer from '../ToastContainer';
@@ -101,6 +102,7 @@ const App = props => {
             <Mask isActive={hasOverlay} dismiss={handleCloseDrawer} />
             <Navigation />
             <MiniCart />
+            <AccountPopup />
             <ToastContainer />
         </HeadProvider>
     );
