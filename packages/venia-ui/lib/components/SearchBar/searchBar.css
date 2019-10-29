@@ -8,14 +8,21 @@
 .root_open {
     composes: root;
     display: flex;
+
 }
 
 .form {
     align-items: center;
     display: grid;
     justify-items: stretch;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
     width: 100%;
+}
+.form input {
+    border-radius: 23px;
+    flex: 0 0 100%;
+    font-size: 1rem;
+    height: 47px;
 }
 
 .container {
@@ -23,7 +30,6 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    max-width: 24rem;
     width: 100%;
 }
 
@@ -37,4 +43,11 @@
     display: grid;
     position: relative;
     z-index: 1;
+}
+
+@media (min-width: 700px) {
+    .root_open {
+        width: 530px;
+        padding-left: 48px;
+    }
 }
