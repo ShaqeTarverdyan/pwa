@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import detectPageBuilder from './PageBuilder/detectPageBuilder';
 import PageBuilder from './PageBuilder';
 import { mergeClasses } from '../../classify';
 import defaultClasses from './richContent.css';
 import { shape, string } from 'prop-types';
+import { withRouter } from "react-router";
 
 const toHTML = str => ({ __html: str });
 
@@ -21,7 +22,7 @@ const toHTML = str => ({ __html: str });
  * @returns {React.Element} A React component that renders Heading with optional styling properties.
  */
 const RichContent = props => {
-    const { html } = props;
+    const { html, history } = props;
     const classes = mergeClasses(defaultClasses, props.classes);
 
     if (detectPageBuilder(html)) {
@@ -31,9 +32,20 @@ const RichContent = props => {
             </div>
         );
     }
+    
+    const linkClickHandler = useCallback((e) => {
+        if (typeof e.target.href != 'undefined') {
+           e.preventDefault();
+           history.push(e.target.getAtribute('href'));
+        }
+    }, [history]);
 
     return (
-        <div className={classes.root} dangerouslySetInnerHTML={toHTML(html)} />
+        <div
+            className={classes.root}
+            dangerouslySetInnerHTML={toHTML(html)}
+            onClick={linkClickHandler}
+        />
     );
 };
 
@@ -53,4 +65,4 @@ RichContent.propTypes = {
     html: string
 };
 
-export default RichContent;
+export default withRouter(RichContent);
