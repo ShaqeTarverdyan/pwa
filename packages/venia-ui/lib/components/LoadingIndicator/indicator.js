@@ -3,7 +3,7 @@ import React from 'react';
 import defaultClasses from './indicator.css';
 import { mergeClasses } from '../../classify';
 
-import logo from '../Logo/logo.svg';
+import preloader from './preloader.gif';
 
 const LoadingIndicator = props => {
     const classes = mergeClasses(defaultClasses, props.classes);
@@ -13,7 +13,7 @@ const LoadingIndicator = props => {
         <div className={className}>
             <img
                 className={classes.indicator}
-                src={logo}
+                src={preloader}
                 width="64"
                 height="64"
                 alt="Loading indicator"
