@@ -1,0 +1,17 @@
+
+.iconUser {
+    padding-left: 3px;
+}
+
+.iconUser:before {
+    font-family: 'pwa_icons';
+    font-size: 17px;
+    line-height: 31px;
+    content: "\65";
+}
+@media (min-width: 700px) {
+    .iconUser:before {
+        font-size: 25px;
+    }
+
+}
