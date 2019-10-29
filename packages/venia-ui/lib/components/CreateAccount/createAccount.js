@@ -19,15 +19,13 @@ import {
 import defaultClasses from './createAccount.css';
 import { useCreateAccount } from '@magento/peregrine/lib/talons/CreateAccount/useCreateAccount';
 
-const LEAD =
-    'Check out faster, use multiple addresses, track orders and more by creating an account!';
 
 const CreateAccount = props => {
     const talonProps = useCreateAccount({
-        initialValues: props.initialValues
+        initialValues: props.initialValues,
+        showSignIn: props.showSignIn
     });
-
-    const { hasError, isDisabled, isSignedIn, initialValues } = talonProps;
+    const { hasError, isDisabled, isSignedIn, initialValues, handleShowSignIn } = talonProps;
 
     const errorMessage = hasError
         ? 'An error occurred. Please try again.'
@@ -40,70 +38,85 @@ const CreateAccount = props => {
     const classes = mergeClasses(defaultClasses, props.classes);
 
     return (
-        <Form
-            className={classes.root}
-            initialValues={initialValues}
-            onSubmit={props.onSubmit}
-        >
-            <p className={classes.lead}>{LEAD}</p>
-            <Field label="First Name" required={true}>
-                <TextInput
-                    field="customer.firstname"
-                    autoComplete="given-name"
-                    validate={isRequired}
-                    validateOnBlur
-                />
-            </Field>
-            <Field label="Last Name" required={true}>
-                <TextInput
-                    field="customer.lastname"
-                    autoComplete="family-name"
-                    validate={isRequired}
-                    validateOnBlur
-                />
-            </Field>
-            <Field label="Email" required={true}>
-                <TextInput
-                    field="customer.email"
-                    autoComplete="email"
-                    validate={combine([isRequired, validateEmail])}
-                    validateOnBlur
-                />
-            </Field>
-            <Field label="Password" required={true}>
-                <TextInput
-                    field="password"
-                    type="password"
-                    autoComplete="new-password"
-                    validate={combine([
-                        isRequired,
-                        [hasLengthAtLeast, 8],
-                        validatePassword
-                    ])}
-                    validateOnBlur
-                />
-            </Field>
-            <Field label="Confirm Password" required={true}>
-                <TextInput
-                    field="confirm"
-                    type="password"
-                    validate={combine([isRequired, validateConfirmPassword])}
-                    validateOnBlur
-                />
-            </Field>
-            <div className={classes.subscribe}>
-                <Checkbox
-                    field="subscribe"
-                    label="Subscribe to news and updates"
-                />
+        <div className={classes.root}>
+            <p className={classes.title}>Create new Account</p>
+            <Form
+                className={classes.root}
+                initialValues={initialValues}
+                onSubmit={props.onSubmit}
+            >
+                <Field label="First Name" required={true}>
+                    <TextInput
+                        field="customer.firstname"
+                        autoComplete="given-name"
+                        validate={isRequired}
+                        validateOnBlur
+                    />
+                </Field>
+                <Field label="Last Name" required={true}>
+                    <TextInput
+                        field="customer.lastname"
+                        autoComplete="family-name"
+                        validate={isRequired}
+                        validateOnBlur
+                    />
+                </Field>
+                <Field label="Email" required={true}>
+                    <TextInput
+                        field="customer.email"
+                        autoComplete="email"
+                        validate={combine([isRequired, validateEmail])}
+                        validateOnBlur
+                    />
+                </Field>
+                <Field label="Password" required={true}>
+                    <TextInput
+                        field="password"
+                        type="password"
+                        autoComplete="new-password"
+                        validate={combine([
+                            isRequired,
+                            [hasLengthAtLeast, 8],
+                            validatePassword
+                        ])}
+                        validateOnBlur
+                    />
+                </Field>
+                <Field label="Confirm Password" required={true}>
+                    <TextInput
+                        field="confirm"
+                        type="password"
+                        validate={combine([isRequired, validateConfirmPassword])}
+                        validateOnBlur
+                    />
+                </Field>
+                <div className={classes.subscribe}>
+                    <Checkbox
+                        field="subscribe"
+                        label="Subscribe to news and updates"
+                    />
+                </div>
+                <div className={classes.error}>{errorMessage}</div>
+                <div className={classes.actions}>
+                    <Button disabled={isDisabled} type="submit" priority="high">
+                        {'Submit'}
+                    </Button>
+                </div>
+            </Form>
+            <div>
+                <span>Already have an account?</span>
+                <Button
+                    onClick={handleShowSignIn}
+                    type="submit"
+                    priority="low"
+                    classes={{
+                        root_lowPriority: classes.signInButton
+                    }}
+                >
+                    Sign in here</Button>
             </div>
-            <div className={classes.error}>{errorMessage}</div>
-            <div className={classes.actions}>
-                <Button disabled={isDisabled} type="submit" priority="high">
-                    {'Submit'}
-                </Button>
-            </div>
-        </Form>
+        </div>
+
     );
 };
 
@@ -113,7 +126,9 @@ CreateAccount.propTypes = {
         error: string,
         lead: string,
         root: string,
-        subscribe: string
+        subscribe: string,
+        signInButton: string,
+        title: string
     }),
     initialValues: shape({
         email: string,

@@ -2,9 +2,18 @@
     display: grid;
     gap: 1rem;
     justify-items: stretch;
-    padding: 1rem 1.5rem;
+    padding: 1rem 0.5rem;
 }
 
+.title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.06em;
+    color: #000000;
+    padding: 10px 0px;
+}
 .message {
     background-color: rgb(var(--venia-grey));
     border-radius: 4px;
@@ -23,6 +32,10 @@
     margin-top: 1rem;
 }
 
+.actions button {
+    width: 100%;
+}
+
 .error {
     composes: message;
     color: rgb(var(--venia-error));
@@ -34,4 +47,10 @@
 
 .subscribe {
     margin-left: -0.5rem;
+}
+
+.signInButton {
+    color: rgb(var(--pwa-blue));
+    text-decoration: underline;
+
 }

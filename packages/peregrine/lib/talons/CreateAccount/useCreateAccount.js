@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo,useCallback } from 'react';
 import { useUserContext } from '@magento/peregrine/lib/context/user';
 
 /**
@@ -13,8 +13,7 @@ import { useUserContext } from '@magento/peregrine/lib/context/user';
  * }}
  */
 export const useCreateAccount = props => {
-    const { initialValues = {} } = props;
-
+    const { initialValues = {}, showSignIn } = props;
     const [
         { createAccountError, isCreatingAccount, isSignedIn }
     ] = useUserContext();
@@ -29,10 +28,15 @@ export const useCreateAccount = props => {
         };
     }, [initialValues]);
 
+    const handleShowSignIn = useCallback(() => {
+        showSignIn();
+    }, [ showSignIn]);
+
     return {
         hasError,
         isDisabled: isCreatingAccount,
         isSignedIn,
-        initialValues: sanitizedInitialValues
+        initialValues: sanitizedInitialValues,
+        handleShowSignIn
     };
 };
