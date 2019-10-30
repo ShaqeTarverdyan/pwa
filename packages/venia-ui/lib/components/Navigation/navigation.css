@@ -83,6 +83,10 @@
 }
 
 @media(min-width: 700px) {
+    .root_desktop {
+        display: none;
+    }
+
     .tree {
         display: grid;
         grid-template-columns: repeat(auto-fill, 130px);

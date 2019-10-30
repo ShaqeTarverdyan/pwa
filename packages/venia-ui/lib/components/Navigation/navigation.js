@@ -24,7 +24,7 @@ const Navigation = props => {
     const windowSize = useWindowSize();
     const isMobile = windowSize.innerWidth <= 700;
     const classes = mergeClasses(defaultClasses, props.classes);
-    const rootClassName = isMobile ? (isOpen ? classes.root_open_mobile : classes.root_mobile) : '';
+    const rootClassName = isMobile ? (isOpen ? classes.root_open_mobile : classes.root_mobile) : classes.root_desktop;
     const bodyClassName = isMobile ? (hasModal ? classes.body_masked : classes.body) : '';
 
     return (

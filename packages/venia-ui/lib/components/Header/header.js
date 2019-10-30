@@ -90,7 +90,7 @@ const Header = props => {
                             <CartTrigger />
                         </div>
                         <div className={classes.miniCartDesktop}>
-                            <MiniCart isOpen={true}/>
+                            <MiniCart/>
                         </div>
 
                     </div>
@@ -113,7 +113,7 @@ Header.propTypes = {
         secondaryActions: string,
         toolbar: string,
         searchFallback: string,
-        topBar: string, 
+        topBar: string,
         mainHeader: string,
         navTrigger: string,
         actions: string,
@@ -123,7 +123,7 @@ Header.propTypes = {
         cart: string,
         cartTrigger: string,
         miniCartDesktop: string,
-        navigationDesktop: string 
+        navigationDesktop: string
     })
 };
 

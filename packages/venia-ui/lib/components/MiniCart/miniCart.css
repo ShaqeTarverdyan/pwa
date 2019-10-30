@@ -37,18 +37,18 @@
 @media(min-width: 700px) {
     .root_desktop {
         display: grid;
-        /* grid-template-rows: minmax(385px, 1fr); */
         --base-z-index: 4;
         align-content: start;
         background-color: white;
         box-shadow: -1px 0 rgb(var(--venia-border));
-        /* min-height: 310px; */
         opacity: 1;
         overflow: hidden;
         visibility: visible;
         width: 100%;
         z-index: var(--base-z-index);
         padding: 20px;
+        display: none;
+        position: absolute
     }
 }
 

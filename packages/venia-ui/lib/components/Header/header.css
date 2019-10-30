@@ -70,7 +70,7 @@
     justify-content: flex-end;
 }
 
-.accountTrigger,  .miniCartDesktop, .navigationDesktop {
+.accountTrigger, .navigationDesktop {
     display: none;
 }
 
@@ -109,7 +109,7 @@
         padding-bottom: 0px;
     }
     
-    .navTrigger {
+    .navTrigger, .miniCartDesktop {
         display: none;
     }
 
@@ -120,9 +120,8 @@
     .cart {
         position: relative;
     }
-
     .cart:hover .miniCartDesktop {
-        display: block;
+        display: initial;
         position: absolute;
         right: 0;
         width: 591px;
@@ -133,10 +132,18 @@
         background-color: white;
     }
 
+    .cart:hover .miniCartDesktop aside:first-of-type{
+        display: grid;    
+    }
+
     .navigationDesktop {
         display: initial;
         width: 1240px;
         margin: 4px auto;
+    }
+
+    .navigationDesktop  aside:first-of-type {
+        display: block;
     }
 }
 
