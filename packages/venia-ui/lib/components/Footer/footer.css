@@ -1,31 +1,207 @@
 .root {
-    background-color: rgb(var(--venia-grey));
-    border-top: 1px solid rgb(var(--venia-border));
-    color: black;
-    margin-top: 1rem;
-    padding: 0 1rem;
+    display: grid;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.context {
+    display: grid;
+    margin: 0px 14px;
+}
+
+:global .address:before {
+    font-family: "pwa_icons";
+    content: "\6b";
+}
+
+:global .phone:before {
+    font-family: "pwa_icons";
+    content: "\6e";
+}
+
+:global .email:before {
+    font-family: "pwa_icons";
+    content: "\70";
+}
+
+:global .tileBody ul.nav, 
+:global .tileBody ul.contacts  {
+    text-align: initial;
+    padding-left: 0px;
+}
+:global .tileBody ul.nav li, 
+:global .tileBody ul.contacts li {
+    list-style: none;
+    padding-left: 0px;
+}
+
+:global .tileBody ul.nav li a, 
+:global .tileBody ul.contacts li a {
+    text-decoration: none;
+}
+
+:global .tileBody ul.nav li a:before {
+    content: ' ' ;
+    background-color: rgb(var(--pwa-blue)) ;
+    height: 10px;
+    width: 10px;
+    display: inline-block ;
+    margin-right: 13px;
+    border-radius: 50% ;
+}
+
+:global .tileTitle {
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 16px !important;
+    line-height: 19px !important;
+    letter-spacing: 0.02em !important;
+    text-align: left !important;   
+}
+
+:global .contacts li a:before {
+    color: rgb(var(--pwa-blue));
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.tile div:first-of-type {
+    margin: 0px
 }
 
 .tile {
-    border-bottom: 1px solid rgb(var(--venia-border));
-    padding: 1rem 2rem;
+    text-align: initial;
 }
 
-.tileTitle {
-    font-size: 1.25rem;
-    margin: 1rem 0;
+.contact {
+    padding: 19px 0px !important;
 }
 
-.tileBody {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    margin: 1rem 0;
+.contact :global .tileTitle {
+    text-align: left !important
+} 
+
+.social {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100px;
+    grid-column-gap: 9px;
+    text-align: center;  
+    margin-bottom: 13px;
 }
 
-.copyright {
-    display: block;
-    color: rgb(var(--venia-text-alt));
-    font-size: 0.75rem;
-    padding: 1.5rem 2rem;
-    text-align: center;
+.social li a {
+    border: 1px solid rgb(var(--pwa-blue));
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    color:  rgb(var(--pwa-blue))
+}
+
+.social li a:hover {
+    background: rgb(var(--pwa-blue));
+    color:white
+}
+
+.contact div:first-of-type {
+    margin: 0px
+}
+
+:global .tileTitle {
+    padding:0px;
+}
+
+.contact :global .tileBody ul{
+    padding: 0px;
+    padding-top: 7px;
+}
+
+.contact :global .tileBody ul li {
+    padding: 0;
+}
+
+.aboutUs {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.08em;
+    text-align: left;
+    margin-top: 42px;
+    padding-right: 10rem;
+}
+
+.logo {
+    min-height: 36px;
+    margin-top: 17px;
+}
+
+.facebook:before {
+    font-family: "pwa_icons";
+    content: "\6c";
+}
+
+.twitter:before {
+    font-family: "pwa_icons";
+    content: "\6d";
+}
+
+.instagram:before {
+    font-family: "pwa_icons";
+    content: "\6f";
+}
+
+@media (min-width: 769px) {
+    .context {
+        max-width: 1240px;
+        margin: 0 auto;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 36px 0px;
+    }
+    .tile {
+        text-align: initial;
+        padding: 22px 0px;
+    }
+
+    .aboutUs {
+        padding-right: 0px
+    }
+
+    :global .tileTitle {
+        padding: 0px 37px;    
+    }
+
+    :global .tileBody ul.nav, 
+    :global .tileBody ul.contacts  {
+        padding-top: 7px;
+        padding-left: 28px;
+    }
+
+    :global .tileBody ul.nav, 
+    :global .tileBody ul.contacts  {
+        text-align: initial;
+        padding-left: 37px;
+}
+    :global .tileBody ul.nav li, 
+    :global .tileBody ul.contacts li {
+        list-style: none;
+        padding-left: 0px;
+}
+
+    .tile div:first-of-type {
+        margin-left: 4px;
+    }
+
+    .contact div:first-of-type {
+        margin: 0px
+    }
+
+    .contact :global .tileTitle {
+        padding: 0px 0px;
+    }
+    :global .contacts {
+        padding-left: 0px !important;
+    }
+   
 }
