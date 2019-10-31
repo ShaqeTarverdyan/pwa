@@ -7,6 +7,7 @@ import { useThemeConfigData } from '@magento/peregrine/lib/talons/Slider/useThem
 import Banner from '../Banner';
 import Features from '../Features';
 import { useWindowSize } from '@magento/peregrine';
+import Testimonials from '../Testimonials';
 
 const Home = props => {
     const sliderIdProps = useThemeConfigData({
@@ -46,7 +47,10 @@ const Home = props => {
                 <div className={classes.features}>
                     <Features />
                 </div>
-
+            </div>
+            <div className={classes.testimonials}>
+                <h1>Testimonials</h1>
+                <Testimonials/>
             </div>
         </div>
     )

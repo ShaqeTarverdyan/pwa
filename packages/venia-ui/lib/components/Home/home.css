@@ -44,6 +44,25 @@
   grid-row-gap: 41px;
 }
 
+.testimonials {
+  text-align: center;
+  margin-bottom: 83px;
+}
+
+.testimonials h1 {
+  font-family: 'RobotoCondensed';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.08em;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+
+
+
 @media(min-width: 700px) {
   .root {
     margin-left: 0px;
@@ -95,5 +114,19 @@
     padding: 17px 0px;
     grid-row-gap: 0px;
   }
+
+  .testimonials {
+    max-width: var(--pwa-desktop-max-width);
+    margin: 0 auto;
+    height: 617px;
+    margin-bottom: 0px;
+  }
+
+  .testimonials h1 {
+    font-size: 20px;
+    line-height: 55px;
+  
+  }
+  
   
 }
