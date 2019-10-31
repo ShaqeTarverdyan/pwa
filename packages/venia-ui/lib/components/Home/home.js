@@ -2,9 +2,11 @@ import React from 'react';
 import defaultClasses from './home.css';
 import { mergeClasses } from '../../classify';
 import SliderComponent from '../Slider';
-import  getStoreConfigData from '../../queries/getStoreConfigData.graphql';
+import getStoreConfigData from '../../queries/getStoreConfigData.graphql';
 import { useThemeConfigData } from '@magento/peregrine/lib/talons/Slider/useThemeConfigData';
 import Banner from '../Banner';
+import Features from '../Features';
+import { useWindowSize } from '@magento/peregrine';
 
 const Home = props => {
     const sliderIdProps = useThemeConfigData({
@@ -18,14 +20,16 @@ const Home = props => {
     } = sliderIdProps;
 
     const classes = mergeClasses(defaultClasses, props.classes);
+    const windowSize = useWindowSize();
+    const isMobile = windowSize.innerWidth <= 700;
     return (
         <div className={classes.root}>
             <div className={classes.top}>
                 <div className={classes.slider}>
                     <SliderComponent
                         id={homePage_top_slider_id}
-                        imageWidth={610}
-                        imageHeight={778}
+                        imageWidth={isMobile ? 320 : 610}
+                        imageHeight={isMobile ? 410 : 778}
                     />
                 </div>
                 <div className={classes.banners}>
@@ -37,6 +41,12 @@ const Home = props => {
                         <Banner id={homepage_bottom_banner_right} />
                     </div>
                 </div>
+            </div>
+            <div className={classes.featuresWrapper}>
+                <div className={classes.features}>
+                    <Features />
+                </div>
+
             </div>
         </div>
     )

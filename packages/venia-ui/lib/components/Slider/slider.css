@@ -51,6 +51,19 @@
 	justify-content: center;
 }
 
+.slideImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+} 
+
+.leftIcon::before, .rigthIcon::before  {
+    padding:10px;
+    font-size: 20px;
+}
+
 @media (min-width: 700px) {
     .root  {
         position: relative;

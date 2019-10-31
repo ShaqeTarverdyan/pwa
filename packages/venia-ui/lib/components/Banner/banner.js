@@ -26,20 +26,12 @@ const Banner = props => {
         )
     },[])
     return typeof banner != 'undefined' ? (
-        <div className={classes[banner.hover_effect]}>
+        <div className={` ${classes[banner.hover_effect]} ${classes.root}`}>
             <div style={{position:'relative'}}>
                 <img
                     src={banner.image_path}
                     alt={banner.title}
                     className={`${classes[`banner${id}`]}`}
-                //     srcSet={`
-                //     ${resourceUrl(banner.image_path, {
-                //         type: 'image-banner',
-                //         width: 700,
-                //         height: 420
-                //     })} 700w,
-                // `}
-                sizes="(min-width: 700px) 610px,1240px"
                 />
                 <span className={`${classes[banner.content_position]} ${classes.content}`}>
                     <RichContent html={banner.content} />

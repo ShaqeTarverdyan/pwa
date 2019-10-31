@@ -49,7 +49,11 @@ const SliderComponent = props => {
                             >
                                 <img
                                     src={getImageUrl(slide.image_path)}
-                                    srcSet={getImageUrl(slide.image_path, imageWidth * 2, imageHeight * 2) + ' 2x'}
+                                    srcSet={`
+                                        ${getImageUrl(slide.image_path, imageWidth / 2, imageHeight / 2) + `${imageWidth} / 2w`}
+                                        ${getImageUrl(slide.image_path, imageWidth, imageHeight) + ' ' + `${imageWidth}w`}
+                                        `}
+                                    className={classes.slideImg}
                                     alt='name'
 
                                 />

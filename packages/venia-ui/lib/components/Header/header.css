@@ -52,9 +52,10 @@
     padding-bottom: 4px; 
 }
 
-/* .logo img {
-    height: 21px;
-} */
+.logo img {
+    width: 57px;
+    height: 20px;
+}
 
 .navTrigger {
     grid-area: menu;
@@ -107,6 +108,11 @@
         margin-bottom: 12px;
         text-align: start;
         padding-bottom: 0px;
+    }
+
+    .logo img {
+        width: 87px;
+        height: 33px;
     }
     
     .navTrigger, .miniCartDesktop {

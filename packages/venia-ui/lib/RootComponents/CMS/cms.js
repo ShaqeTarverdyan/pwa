@@ -35,11 +35,7 @@ const CMSPage = props => {
         ) {
             return <RichContent html={data.cmsPage.content} />;
         }
-        return (
-            <div>
-                <Home />
-            </div>
-        );
+        return <Home /> 
     }
     return null;
 };
