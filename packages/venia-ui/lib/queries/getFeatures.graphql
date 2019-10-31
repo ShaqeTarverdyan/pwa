@@ -1,0 +1,9 @@
+query features {
+    features {
+        id
+        title
+        description
+        icon_url
+        icon_path
+    }
+}

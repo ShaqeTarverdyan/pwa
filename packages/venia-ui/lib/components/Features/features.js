@@ -1,13 +1,18 @@
 import React from 'react';
-import defaultClasses from './features.css';
-import { mergeClasses } from '../../classify';
-import getFeature from '../../queries/getFeatures.graphql';
+import { useFeatures } from '@magento/peregrine/lib/talons/Features/useFeatures';
+import GET_FEATURES from '../../queries/getFeatures.graphql';
+import Feature from './feature';
 
 
-const Features = props => {
-    const classes = mergeClasses(defaultClasses, props.classes)
+const Features = () => {
+    const talonProps = useFeatures({
+        query: GET_FEATURES
+    });
+    const { features } = talonProps;
     return (
-        <div className={classes.root}>features</div>
+        features.map(feature =>
+            <Feature feature={feature} key={feature.id} />
+        )
     );
 }
 

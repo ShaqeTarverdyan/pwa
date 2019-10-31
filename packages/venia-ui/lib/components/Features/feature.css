@@ -1,0 +1,62 @@
+.root {
+    display: block;
+    text-align: center;
+}
+
+.root img {
+    width: 27px;  
+}
+
+.text {
+    display: grid;
+    padding-top: 7px;
+}
+
+.title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.06em;
+}
+
+.description {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 33px;
+    text-align: center;
+    color: #929292;
+}
+
+@media (min-width: 700px) {
+
+    .root {
+        display: grid;
+        grid-template-columns: 25% 75%;
+        text-align: left
+    }
+
+    .root img {  
+        width: inherit;
+        margin-left: 37px;
+    }
+
+    .title {
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: 0.02em;
+    }
+    
+    .description {
+        font-size: 16px;
+        line-height: 19px;
+        padding-top: 5px;
+        text-align: inherit;
+    }
+
+    .text {
+        padding-left: 23px;
+        padding-top: 0px;
+    }
+}
