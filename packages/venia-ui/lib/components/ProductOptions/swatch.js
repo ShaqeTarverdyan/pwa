@@ -25,7 +25,7 @@ const Swatch = props => {
     const {
         hasFocus,
         isSelected,
-        item: { label, value_index },
+        item: { value_index, swatch_data },
         onClick,
         style
     } = props;
@@ -56,18 +56,17 @@ const Swatch = props => {
     const finalStyle = Object.assign({}, style, {
         '--venia-swatch-bg': randomColor
     });
-
+    const { value } = swatch_data;
     const className = classes[getClassName('root', isSelected, hasFocus)];
-
+    const colorStyle = {
+        backgroundColor:value
+    }
     return (
         <button
             onClick={handleClick}
-            title={label}
             className={className}
-            style={finalStyle}
-        >
-            {icon}
-        </button>
+            style={colorStyle}
+        />
     );
 };
 
@@ -76,7 +75,10 @@ Swatch.propTypes = {
     isSelected: bool,
     item: shape({
         label: string.isRequired,
-        value_index: oneOfType([number, string]).isRequired
+        value_index: oneOfType([number, string]).isRequired,
+        swatch_data : shape({
+            value: string
+        })
     }).isRequired,
     onClick: func.isRequired,
     style: object

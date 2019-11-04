@@ -60,19 +60,12 @@ const Option = props => {
 
     return (
         <div className={classes.root}>
-            <h3 className={classes.title}>
-                <span>{label}</span>
-            </h3>
             <ValueList
                 getItemKey={getItemKey}
                 selectedValue={initialSelection}
                 items={values}
                 onSelectionChange={handleSelectionChange}
             />
-            <dl className={classes.selection}>
-                <dt className={classes.selectionLabel}>{selectedValueLabel}</dt>
-                <dd>{selectedValueDescription}</dd>
-            </dl>
         </div>
     );
 };
@@ -81,10 +74,8 @@ Option.propTypes = {
     attribute_code: string.isRequired,
     attribute_id: string,
     classes: shape({
-        root: string,
-        title: string
+        root: string
     }),
-    label: string.isRequired,
     onSelectionChange: func,
     selectedValue: oneOfType([number, string]),
     values: arrayOf(object).isRequired
