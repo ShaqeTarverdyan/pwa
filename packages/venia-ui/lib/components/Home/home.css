@@ -49,7 +49,7 @@
   margin-bottom: 83px;
 }
 
-.testimonials h1 {
+.testimonials h1, .productCarousel h1 {
   font-family: 'RobotoCondensed';
   font-style: normal;
   font-weight: bold;
@@ -60,6 +60,9 @@
   text-transform: uppercase;
 }
 
+.productCarousel {
+  text-align: center
+}
 
 
 
@@ -122,10 +125,20 @@
     margin-bottom: 0px;
   }
 
-  .testimonials h1 {
+  .testimonials h1, .productCarousel h1 {
     font-size: 20px;
     line-height: 55px;
   
+  }
+
+  .productCarousel h1 {
+    padding-bottom: 49px;
+  }
+  
+  .productCarousel {
+    max-width: var(--pwa-desktop-max-width);
+    margin: 0 auto;
+    margin-top: 81px;
   }
   
   

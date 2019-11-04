@@ -5,7 +5,7 @@ import { mergeClasses } from '../../classify';
 
 const Rating = props => {
     const { rating } = props;
-    const classes = mergeClasses(defaultClasses, props.classes);\
+    const classes = mergeClasses(defaultClasses, props.classes);
     
     return rating && typeof rating != 'undefined' ? (
         <div className = { classes.root }>
