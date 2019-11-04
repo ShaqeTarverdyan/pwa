@@ -27,12 +27,14 @@ const CreateAccount = props => {
         initialValues: props.initialValues,
         createAccountQuery: CREATE_ACCOUNT_MUTATION,
         signInQuery: SIGN_IN_MUTATION,
-        onSubmit: props.onSubmit
+        onSubmit: props.onSubmit,
+        showSignIn: props.showSignIn
     });
 
     const {
         errors,
         handleSubmit,
+        handleShowSignIn,
         isDisabled,
         isSignedIn,
         initialValues

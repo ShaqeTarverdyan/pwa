@@ -27,7 +27,8 @@ export const useCreateAccount = props => {
         initialValues = {},
         onSubmit,
         createAccountQuery,
-        signInQuery
+        signInQuery,
+        showSignIn
     } = props;
 
     const [isSubmitting, setIsSubmitting] = useState(false);
