@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { string, number, shape } from 'prop-types';
 import { Link, resourceUrl } from '@magento/venia-drivers';
 import { Price } from '@magento/peregrine';
@@ -7,11 +7,17 @@ import classify from '../../classify';
 import { transparentPlaceholder } from '@magento/peregrine/lib/util/images';
 import { generateSrcset } from '../../util/images';
 import defaultClasses from './item.css';
+import Rating from '../Rating';
+import { fullPageLoadingIndicator } from '../LoadingIndicator';
+const Options = React.lazy(() => import('../ProductOptions'));
+import { isProductConfigurable } from '@magento/peregrine/lib/util/isProductConfigurable';
+import Button from '../Button';
 
-// The placeholder image is 4:5, so we should make sure to size our product
-// images appropriately.
-const imageWidth = '300';
-const imageHeight = '375';
+const imageWidth = '280';
+const imageHeight = '371';
+
+const INITIAL_OPTION_CODES = new Map();
+const INITIAL_OPTION_SELECTIONS = new Map();
 
 const ItemPlaceholder = ({ children, classes }) => (
     <div className={classes.root_pending}>
@@ -56,8 +62,40 @@ class GalleryItem extends Component {
         })
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            quantity: 1,
+            isAddingToCart: false,
+            isAddedToCart: false,
+            optionSelections: INITIAL_OPTION_SELECTIONS,
+            optionCodes: null
+        }
+    }
+
+
     render() {
         const { classes, item } = this.props;
+        const {
+            name,
+            price,
+            url_key,
+            rating_summary,
+        } = item;
+        const productLink = `/${url_key}${productUrlSuffix}`;
+        const handleSelectionChange = (optionId, selection) => {
+            const newOptionSelections = new Map([...this.state.optionSelections]);
+            newOptionSelections.set(optionId, Array.from(selection).pop());
+            this.setState({ optionSelections: newOptionSelections });
+        };
+        const options = isProductConfigurable(item) ? (
+            <Suspense fallback={fullPageLoadingIndicator}>
+                <Options
+                    onSelectionChange={handleSelectionChange}
+                    options={item.configurable_options}
+                />
+            </Suspense>
+        ) : null;
 
         if (!item) {
             return (
@@ -67,15 +105,24 @@ class GalleryItem extends Component {
             );
         }
 
-        const { name, price, url_key } = item;
-        const productLink = `/${url_key}${productUrlSuffix}`;
-
         return (
             <div className={classes.root}>
                 <Link to={resourceUrl(productLink)} className={classes.images}>
                     {this.renderImagePlaceholder()}
                     {this.renderImage()}
                 </Link>
+                <Button
+                    priority="normal"
+                    type="button"
+                    classes={{
+                        root_normalPriority: classes.addToCart
+                    }}
+                >
+                    Add to Cart
+                    </Button>
+                <div className={classes.rating}>
+                    <Rating rating={rating_summary} />
+                </div>
                 <Link to={resourceUrl(productLink)} className={classes.name}>
                     <span>{name}</span>
                 </Link>
@@ -84,6 +131,9 @@ class GalleryItem extends Component {
                         value={price.regularPrice.amount.value}
                         currencyCode={price.regularPrice.amount.currency}
                     />
+                </div>
+                <div className={classes.options}>
+                    {options}
                 </div>
             </div>
         );
