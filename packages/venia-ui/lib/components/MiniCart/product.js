@@ -17,7 +17,7 @@ PRODUCT_IMAGE_SIZES.set('small', PRODUCT_IMAGE_RESOURCE_WIDTH);
 
 const Product = props => {
     const { beginEditItem, currencyCode, item, removeItemFromCart } = props;
-
+    const { image } = item;
     const talonProps = useProduct({
         beginEditItem,
         item,
@@ -27,9 +27,6 @@ const Product = props => {
     const {
         handleRemoveItem,
         hasImage,
-        image,
-        isFavorite,
-        isLoading,
         productName,
         productOptions,
         productPrice,

@@ -34,6 +34,7 @@
     transition-timing-function: ease-out;
     visibility: visible;
     width: 100%;
+    height: 100%;
     order: 1;
 }
 
@@ -134,7 +135,8 @@
     }
 
     .image {
-        width: auto;
+        width: 100%;
+        height: max-content;
     }
 
     .rating {

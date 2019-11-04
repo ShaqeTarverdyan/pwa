@@ -1,9 +1,6 @@
 .root {
     composes: root from '../clickable.css';
     border-radius: 50%;
-    height: 3rem;
-    min-width: 3rem;
-    padding: 0 0.5rem;
     background: #F0ECEC;
     font-style: normal;
     font-weight: normal;
@@ -11,16 +8,13 @@
     line-height: 16px;
     letter-spacing: 0.02em;
     height: 18px;
-    min-width: 18px;
+    width: 18px;
     padding: 0;
 }
 
 
 @media (min-width: 700px) {
     .root {
-        height: 18px;
-        min-width: 18px;
-        padding: 0;
     }
 }
 

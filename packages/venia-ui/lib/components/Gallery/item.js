@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {Suspense} from 'react';
 import { string, number, shape } from 'prop-types';
 import { Link, resourceUrl } from '@magento/venia-drivers';
 import { Price } from '@magento/peregrine';
@@ -11,14 +11,15 @@ import defaultClasses from './item.css';
 import Rating from '../Rating';
 import { fullPageLoadingIndicator } from '../LoadingIndicator';
 const Options = React.lazy(() => import('../ProductOptions'));
+import { useProductFullDetail } from '@magento/peregrine/lib/talons/ProductFullDetail/useProductFullDetail';
 import { isProductConfigurable } from '@magento/peregrine/lib/util/isProductConfigurable';
 import Button from '../Button';
 
 
 // The placeholder image is 4:5, so we should make sure to size our product
 // images appropriately.
-const IMAGE_WIDTH = 300;
-const IMAGE_HEIGHT = 375;
+const IMAGE_WIDTH = 295;
+const IMAGE_HEIGHT = 371;
 
 
 // Gallery switches from two columns to three at 640px.
@@ -27,7 +28,7 @@ IMAGE_SIZE_BREAKPOINTS.set('small', 640);
 
 const IMAGE_SIZES = new Map();
 IMAGE_SIZES.set('small', IMAGE_WIDTH);
-IMAGE_SIZES.set('medium', 840);
+IMAGE_SIZES.set('medium', IMAGE_WIDTH);
 
 // TODO: get productUrlSuffix from graphql when it is ready
 const productUrlSuffix = '.html';
@@ -51,6 +52,15 @@ const ItemPlaceholder = ({ classes }) => (
 
 const GalleryItem = props => {
     const { item } = props;
+    const talonProps = useProductFullDetail({
+        product: item
+    });
+
+    const {
+        isAddToCartDisabled,
+        handleAddToCart,
+        handleSelectionChange,
+    } = talonProps;
 
     const classes = mergeClasses(defaultClasses, props.classes);
 
@@ -58,8 +68,16 @@ const GalleryItem = props => {
         return <ItemPlaceholder classes={classes} />;
     }
 
-    const { name, price, small_image, url_key } = item;
+    const { name, price, small_image, url_key, rating_summary } = item;
     const productLink = resourceUrl(`/${url_key}${productUrlSuffix}`);
+    const options = isProductConfigurable(item) ? (
+        <Suspense fallback={fullPageLoadingIndicator}>
+            <Options
+                onSelectionChange={handleSelectionChange}
+                options={item.configurable_options}
+            />
+        </Suspense>
+    ) : null;
 
     return (
         <div className={classes.root}>
@@ -77,14 +95,31 @@ const GalleryItem = props => {
                     resourceWidth={IMAGE_WIDTH}
                 />
             </Link>
+            <Button
+                priority="normal"
+                type="button"
+                onClick={handleAddToCart}
+                disabled={isAddToCartDisabled}
+                classes={{
+                    root_normalPriority: classes.addToCart
+                }}
+            >
+                Add to cart
+            </Button>
             <Link to={productLink} className={classes.name}>
                 <span>{name}</span>
             </Link>
+            <div className={classes.rating}>
+                <Rating rating={rating_summary} />
+            </div>
             <div className={classes.price}>
                 <Price
                     value={price.regularPrice.amount.value}
                     currencyCode={price.regularPrice.amount.currency}
                 />
+            </div>
+            <div className={classes.options}>
+               {options}
             </div>
         </div>
     );
