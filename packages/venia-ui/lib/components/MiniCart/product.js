@@ -37,7 +37,6 @@ const Product = props => {
     } = talonProps;
 
     const classes = mergeClasses(defaultClasses, props.classes);
-    const { image } = item;
 
     const productImage = useMemo(() => {
         const imageProps = {

@@ -1,5 +1,4 @@
 query navigationMenu($id: Int!) {
-<<<<<<< HEAD
   category(id: $id) {
     id
     name
@@ -18,5 +17,8 @@ query navigationMenu($id: Int!) {
             url
           }
         }
+      }
+      url_path
     }
+  }
 }
