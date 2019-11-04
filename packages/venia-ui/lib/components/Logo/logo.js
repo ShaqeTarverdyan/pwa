@@ -6,6 +6,8 @@ import { useLogo } from '@magento/peregrine/lib/talons/Logo/useLogo';
 import GET_STORE_CONFIG_DATA from '../../queries/getStoreConfigData.graphql';
 import { resourceUrl } from '@magento/venia-drivers';
 import LoadingIndicator from '../LoadingIndicator';
+
+
 /**
  * A component that renders a logo in the header.
  *
@@ -17,7 +19,7 @@ import LoadingIndicator from '../LoadingIndicator';
  * @returns {React.Element} A React component that displays a logo.
  */
 const Logo = props => {
-    const { height } = props;
+    const { height, width } = props;
     const classes = mergeClasses({}, props.classes);
 
     const talonProps = useLogo({
@@ -50,7 +52,11 @@ const Logo = props => {
             className={classes.logo}
             src={defaultLogo}
             height={height}
+
             alt="Venia"
+            classes={{ image: classes.logo }}
+            height={height}
+            src={logo}
             title="Venia"
         />;
 };
@@ -73,7 +79,8 @@ Logo.propTypes = {
 };
 
 Logo.defaultProps = {
-    height: 24
+    height: 24,
+    width: 48
 };
 
 export default Logo;

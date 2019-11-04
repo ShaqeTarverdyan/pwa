@@ -20,6 +20,22 @@
     display: none;
 } 
 
+.toolbar {
+    align-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-areas: 'primary title secondary';
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 3rem;
+    justify-items: center;
+    min-height: 3.5rem;
+    padding: 0 1rem;
+}
+
+.logo {
+    grid-area: title;
+}
+
 .mainHeader {
     display: grid;
     grid-template-areas: 'menu logo actions';

@@ -18,17 +18,31 @@ import {
 } from '../../util/formValidators';
 import defaultClasses from './createAccount.css';
 import { useCreateAccount } from '@magento/peregrine/lib/talons/CreateAccount/useCreateAccount';
+import CREATE_ACCOUNT_MUTATION from '../../queries/createAccount.graphql';
+import SIGN_IN_MUTATION from '../../queries/signIn.graphql';
 
 
 const CreateAccount = props => {
     const talonProps = useCreateAccount({
         initialValues: props.initialValues,
-        showSignIn: props.showSignIn
+        createAccountQuery: CREATE_ACCOUNT_MUTATION,
+        signInQuery: SIGN_IN_MUTATION,
+        onSubmit: props.onSubmit
     });
-    const { hasError, isDisabled, isSignedIn, initialValues, handleShowSignIn } = talonProps;
 
-    const errorMessage = hasError
-        ? 'An error occurred. Please try again.'
+    const {
+        errors,
+        handleSubmit,
+        isDisabled,
+        isSignedIn,
+        initialValues
+    } = talonProps;
+
+    // Map over any errors we get and display an appropriate error.
+    const errorMessage = errors.length
+        ? errors
+              .map(({ message }) => message)
+              .reduce((acc, msg) => msg + '\n' + acc, '')
         : null;
 
     if (isSignedIn) {
