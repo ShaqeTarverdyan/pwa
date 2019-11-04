@@ -11,6 +11,8 @@ query navigationMenu($id: Int!) {
       include_in_menu
       name
       position
+      submenu_type
+      megamenu_block
       productImagePreview: products(pageSize: 1) {
         items {
           small_image {

@@ -154,4 +154,21 @@
         bottom: -3px;
     }
 
+    .megamenu {
+        position: absolute;
+        background-color: lightgray;
+        z-index: 1;
+        top: 60px;
+        display: none;
+    }
+
+    .megamenu :global .megaContent {
+        display: flex;
+        width: max-content;
+    }
+
+    .root:hover > .megamenu{
+        display: initial;
+    }   
+
 }

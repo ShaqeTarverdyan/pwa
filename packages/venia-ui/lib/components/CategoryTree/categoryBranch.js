@@ -6,6 +6,7 @@ import { mergeClasses } from '../../classify';
 import defaultClasses from './categoryBranch.css';
 import CategoryTree from './categoryTree';
 import { useWindowSize } from '@magento/peregrine';
+import CmsBlock from '../CmsBlock';
 
 const Branch = props => {
     const {
@@ -19,7 +20,7 @@ const Branch = props => {
     const [select, setSelect] = useState(false);
     const windowSize = useWindowSize();
     const isMobile = windowSize.innerWidth <= 700;
-    const { id, name, level, label } = category;
+    const { id, name, level, label, submenu_type, megamenu_block } = category;
     const classes = mergeClasses(defaultClasses, props.classes);
     const talonProps = useCategoryBranch({ category, setCategoryId });
     const { exclude } = talonProps;
@@ -57,15 +58,21 @@ const Branch = props => {
                         <span>{menuLabel}</span>
                     </div>
             }
-            <div className={style}>
-                <CategoryTree
-                    categories={categories}
-                    categoryId={id}
-                    onNavigate={onNavigate}
-                    setCategoryId={setCategoryId}
-                    updateCategories={updateCategories}
-                />
-            </div>
+            {
+                submenu_type && megamenu_block && !isMobile ? 
+                    <div className={classes[submenu_type]}>
+                        <CmsBlock identifiers={[megamenu_block]}/>
+                    </div> :
+                    <div className={style}>
+                    <CategoryTree
+                        categories={categories}
+                        categoryId={id}
+                        onNavigate={onNavigate}
+                        setCategoryId={setCategoryId}
+                        updateCategories={updateCategories}
+                    />
+                </div>
+            }
         </li>
     );
 };
