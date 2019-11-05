@@ -20,10 +20,10 @@ const Testimonials = props => {
     })
     const { items } = talonProps;
 
-    return items  && typeof items != 'undefined' ? (
+    return items && typeof items != 'undefined' ? (
         <CarouselProvider
             naturalSlideWidth={480}
-            naturalSlideHeight={500}
+            naturalSlideHeight={550}
             totalSlides={items.length}
             visibleSlides={slidesCount}
             orientation="horizontal"
@@ -41,8 +41,8 @@ const Testimonials = props => {
                                         type: 'image-testimonial',
                                         width: 100,
                                         height: 100
-                                    })} 
-                                    alt={item.author} />
+                                    })}
+                                        alt={item.author} />
                                 </div>
                                 <div className={classes.testimonialRating}>
                                     <Rating rating={item.rating} />
@@ -51,9 +51,14 @@ const Testimonials = props => {
                                     <p >{item.testimonial_content}</p>
                                 </div>
                                 <div className={classes.information}>
-                                    <span>
-                                        {item.author}
-                                    </span>
+                                    <div className={classes.name}>
+                                        <span>{item.author} </span>
+                                        <img src={resourceUrl(item.flag_path, {
+                                            type: 'image-flag',
+                                        })}
+                                            alt='flag'
+                                        />
+                                    </div>
                                     <span className={classes.job}>{item.job}</span>
                                 </div>
                             </div>

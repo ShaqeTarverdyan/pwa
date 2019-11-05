@@ -8,6 +8,7 @@ query testimonials {
           image_url
           image_path
           rating
+          flag_path
         }
     }
 }
