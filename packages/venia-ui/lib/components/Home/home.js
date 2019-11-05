@@ -9,6 +9,7 @@ import Features from '../Features';
 import { useWindowSize } from '@magento/peregrine';
 import Testimonials from '../Testimonials';
 import ProductCarousel from '../ProductCarousel';
+import Brands from '../Brands';
 
 const Home = props => {
     const sliderIdProps = useThemeConfigData({
@@ -58,6 +59,20 @@ const Home = props => {
                     onServer={true}
                     idString={'21'}
                 />
+            </div>
+            <div className={classes.productCarousel}>
+                <h1>New Products</h1>
+                <ProductCarousel
+                    id={6}
+                    pageSize={6}
+                    currentPage={1}
+                    onServer={true}
+                    idString={'6'}
+                />
+            </div>
+            <div className={classes.brands}>
+                <h1>Product Brands</h1>
+                <Brands/>
             </div>
             <div className={classes.testimonials}>
                 <h1>Testimonials</h1>
