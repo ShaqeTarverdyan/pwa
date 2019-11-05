@@ -16,6 +16,7 @@ const ProductCarousel = props => {
     const windowSize = useWindowSize();
     const isMobile = windowSize.innerWidth <= 700;
     const slidesCount = isMobile ? 2 : 4;
+    const natureHeight = isMobile ? 760 : 530
 
     const talonProps = useProductDetail({
         query: GET_PRODUCTS,
@@ -37,7 +38,7 @@ const ProductCarousel = props => {
     return  items && typeof items != 'undefined' ? (
         <CarouselProvider
             naturalSlideWidth={295}
-            naturalSlideHeight={800}
+            naturalSlideHeight={natureHeight}
             totalSlides={items.length}
             visibleSlides={slidesCount}
             orientation="horizontal"
@@ -51,7 +52,6 @@ const ProductCarousel = props => {
                         <Slide index={index} key={index} className={classes.imageWrapper}>
                             <GalleryItem
                                 item={mapGalleryItem(product)}
-                            // addItemToCart={addItemToCart}
                             />
                         </Slide>
                     )

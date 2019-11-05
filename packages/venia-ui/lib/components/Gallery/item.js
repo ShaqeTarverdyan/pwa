@@ -1,5 +1,5 @@
 
-import React, {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import { string, number, shape } from 'prop-types';
 import { Link, resourceUrl } from '@magento/venia-drivers';
 import { Price } from '@magento/peregrine';
@@ -95,31 +95,33 @@ const GalleryItem = props => {
                     resourceWidth={IMAGE_WIDTH}
                 />
             </Link>
-            <Button
-                priority="normal"
-                type="button"
-                onClick={handleAddToCart}
-                disabled={isAddToCartDisabled}
-                classes={{
-                    root_normalPriority: classes.addToCart
-                }}
-            >
-                Add to cart
-            </Button>
-            <Link to={productLink} className={classes.name}>
-                <span>{name}</span>
-            </Link>
-            <div className={classes.rating}>
-                <Rating rating={rating_summary} />
-            </div>
-            <div className={classes.price}>
-                <Price
-                    value={price.regularPrice.amount.value}
-                    currencyCode={price.regularPrice.amount.currency}
-                />
-            </div>
-            <div className={classes.options}>
-               {options}
+            <div className={classes.container}>
+                <Button
+                    priority="normal"
+                    type="button"
+                    onClick={handleAddToCart}
+                    disabled={isAddToCartDisabled}
+                    classes={{
+                        root_normalPriority: classes.addToCart
+                    }}
+                >
+                    Add to cart
+                </Button>
+                <Link to={productLink} className={classes.name}>
+                    <span>{name}</span>
+                </Link>
+                <div className={classes.rating}>
+                    <Rating rating={rating_summary} />
+                </div>
+                <div className={classes.price}>
+                    <Price
+                        value={price.regularPrice.amount.value}
+                        currencyCode={price.regularPrice.amount.currency}
+                    />
+                </div>
+                <div className={classes.options}>
+                    {options}
+                </div>
             </div>
         </div>
     );

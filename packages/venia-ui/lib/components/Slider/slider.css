@@ -3,7 +3,7 @@
 }
 
 .buttonGroup {
-    width: 88%;
+    width: 94%;
     height: 50px;
     bottom: 45%;
     position: absolute;
@@ -11,7 +11,7 @@
     justify-content: space-between;
     margin: 0 auto;
     left: 50%;
-    top: 7.6%;
+    top: 50.6%;
     transform: translate(-50%,-50%);
 }
 
@@ -60,7 +60,7 @@
 } 
 
 .leftIcon::before, .rigthIcon::before  {
-    padding:10px;
+    padding: 18px;
     font-size: 20px;
 }
 
@@ -80,7 +80,9 @@
     }
 
     .buttonGroup {
+        width: 96%;
         height: 79px;
+        top: 50%;
     }
     
 }
