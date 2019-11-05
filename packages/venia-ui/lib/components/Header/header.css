@@ -68,10 +68,10 @@
     padding-bottom: 4px; 
 }
 
-.logo img {
+/* .logo img {
     width: 57px;
     height: 20px;
-}
+} */
 
 .navTrigger {
     grid-area: menu;
@@ -126,10 +126,10 @@
         padding-bottom: 0px;
     }
 
-    .logo img {
+    /* .logo img {
         width: 87px;
         height: 33px;
-    }
+    } */
     
     .navTrigger, .miniCartDesktop {
         display: none;

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mergeClasses } from '../../classify';
+import Image from '../Image';
 import defaultLogo from './logo.svg';
 import { useLogo } from '@magento/peregrine/lib/talons/Logo/useLogo';
 import GET_STORE_CONFIG_DATA from '../../queries/getStoreConfigData.graphql';
-import { resourceUrl } from '@magento/venia-drivers';
 import LoadingIndicator from '../LoadingIndicator';
 
 
@@ -36,29 +36,23 @@ const Logo = props => {
         return <LoadingIndicator />;
     }
     
-    return logo_src ? (
-        <img
-            className={classes.logo}
-            src={resourceUrl('logo/' + logo_src, {
-                type: 'image-wysiwyg',
-                height: height
-            })}
-            alt={logo_alt}
-            title={logo_alt}
-            height={logo_height}
-            width={logo_width}
-        />
-    ) : <img
-            className={classes.logo}
-            src={defaultLogo}
-            height={height}
-
+    const imageSizes = new Map();
+    imageSizes.set('small', logo_width || width);
+    return (
+        <Image
             alt="Venia"
-            classes={{ image: classes.logo }}
+            classes={{image: classes.logo}}
             height={height}
-            src={logo}
-            title="Venia"
-        />;
+            src={!logo_src ? defaultLogo : null}
+            resource={'logo/' + logo_src}
+            resourceSizes={imageSizes}
+            resourceHeight={logo_height || height || null}
+            resourceWidth={logo_width ? logo_width : width}
+            titlle={logo_alt}
+            width={width}
+            type={'image-wysiwyg'}
+        />
+    );
 };
 
 /**
@@ -75,11 +69,11 @@ Logo.propTypes = {
     classes: PropTypes.shape({
         logo: PropTypes.string
     }),
-    height: PropTypes.number
+    height: PropTypes.number,
+    width: PropTypes.number
 };
 
 Logo.defaultProps = {
-    height: 24,
     width: 48
 };
 
