@@ -2,7 +2,7 @@ import React from 'react';
 import { bool, number, object, shape, string } from 'prop-types';
 
 import { mergeClasses } from '../../classify';
-import CheckoutButton from '../Checkout/checkoutButton';
+import { Link } from '@magento/venia-drivers';
 import Button from '../Button';
 
 import defaultClasses from './footer.css';
@@ -29,7 +29,7 @@ const Footer = props => {
                 subtotal={subtotal}
             />
             <div className={classes.buttonGroup}>
-                <Button priority='normal'>View Cart</Button>
+                <Button priority='normal'><Link to="/cart">View Cart</Link></Button>
                 <Button priority='high'>Checkout</Button>
             </div>
         </div>
