@@ -1,4 +1,25 @@
-.root {
-    display: flex;
-    flex-direction: column;
+
+ .root {
+    border: 1px solid grey;
+    border-radius: 29px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    width: 105px;
+    height: 30px;
+    align-items: center;
+    text-align: center;
 }
+
+.actionButton {
+    composes: root_lowPriority from '../Button/button.css';
+    outline: none;
+    color:black;
+    border:none
+ }
+
+ @media(min-width: 700px) {
+    .root {
+        width: 133px;
+        height: 38px;
+    }
+ }
