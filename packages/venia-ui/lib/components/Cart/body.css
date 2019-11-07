@@ -1,0 +1,35 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #F5F5F5;
+}
+.table thead th{
+    background: #F4F4F4;
+    border: 1px solid #F5F5F5;
+    padding: 10px;
+    text-align: center;
+    background: #F4F4F4;
+}
+.table thead tr {
+    display: flex;
+    justify-content: space-between;
+    background-color: #F4F4F4;
+}
+.table thead tr th {
+    display: none;
+}
+
+.table thead tr th:first-child, .table thead tr th:last-child {
+   width: auto;
+   display: block;
+}
+
+@media(min-width:700px) {
+    .table thead  tr th {
+        display: block;
+        background: #F4F4F4;
+        border: 1px solid #F5F5F5;
+        padding: 10px;
+        text-align: center;
+    }
+}

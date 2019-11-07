@@ -1,0 +1,31 @@
+
+.root {
+    margin: 0 auto;
+    text-align: center;
+    padding: 0px 14px;
+}
+
+.content {
+    display: grid;
+    grid-row-gap: 2rem;
+}
+
+.title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: 0.08em;   
+}
+
+@media(min-width: 700px) {
+    .root {
+        max-width: var(--pwa-desktop-max-width);
+        padding: 0px;
+    }
+    .content {
+        grid-template-columns: 2fr 1fr;
+        margin-top: 40px;
+        grid-column-gap: 2rem;
+    }
+}
