@@ -1,0 +1,53 @@
+
+.root  {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #F5F5F5;
+}
+.root  thead tr th{
+    background: #F4F4F4;
+    border: 1px solid #F5F5F5;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+.root tfoot {
+    border-top: 1px solid #F5F5F5;
+    font-weight: bold;
+}
+.root tr td {
+    padding: 10px;
+}
+.root  tr td:last-child {
+    text-align: right;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.04em;
+}
+
+.root tr td:first-child {
+    text-align: left;
+}
+
+.root  tfoot tr td:last-child {
+    text-align: right;
+    font-weight: bold;
+}
+
+.subtotalLabel {
+    color: rgb(var(--venia-text-alt));
+}
+
+.subtotalValue {
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.totals {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
