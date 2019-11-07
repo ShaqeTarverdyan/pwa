@@ -3,7 +3,7 @@ import defaultClasses from './home.css';
 import { mergeClasses } from '../../classify';
 import SliderComponent from '../Slider';
 import getStoreConfigData from '../../queries/getStoreConfigData.graphql';
-import { useThemeConfigData } from '@magento/peregrine/lib/talons/Slider/useThemeConfigData';
+import { useThemeConfigData } from '@magento/peregrine/lib/talons/Home/useThemeConfigData';
 import Banner from '../Banner';
 import Features from '../Features';
 import { useWindowSize } from '@magento/peregrine';
@@ -12,15 +12,16 @@ import ProductCarousel from '../ProductCarousel';
 import Brands from '../Brands';
 
 const Home = props => {
-    const sliderIdProps = useThemeConfigData({
-        query: getStoreConfigData
-    });
     const {
         homePage_top_slider_id,
         homepage_top_banner,
         homepage_bottom_banner_left,
-        homepage_bottom_banner_right
-    } = sliderIdProps;
+        homepage_bottom_banner_right,
+        pwa_homepage_show_brands,
+        visibleBrand
+    } = useThemeConfigData({
+        query: getStoreConfigData
+    });;
 
     const classes = mergeClasses(defaultClasses, props.classes);
     const windowSize = useWindowSize();
@@ -72,7 +73,7 @@ const Home = props => {
             </div>
             <div className={classes.brands}>
                 <h1>Product Brands</h1>
-                <Brands/>
+                {pwa_homepage_show_brands && <Brands visibleBrands={isMobile ? visibleBrand.mobile : visibleBrand.desktop}/>}
             </div>
             <div className={classes.testimonials}>
                 <h1>Testimonials</h1>

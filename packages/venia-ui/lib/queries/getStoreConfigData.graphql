@@ -19,5 +19,7 @@ query storeConfigData {
       	pwa_social_facebook_page_url
       	pwa_social_linkedin_page_url
       	pwa_social_instagram_page_url
+        pwa_homepage_show_brands,
+        pwa_homepage_brands_visible
     }
 }

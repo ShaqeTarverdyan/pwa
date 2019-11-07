@@ -12,13 +12,13 @@ import { useBrands } from '@magento/peregrine/lib/talons/Brands/useBrands';
 
 const Brands = props => {
     const classes = mergeClasses(defaultClasses, props.classes);
-    const talonProps = useBrands({
+    const { visibleBrands } = props;
+    const { brands } = useBrands({
         query: getBrands
-    })
-    const { brands } = talonProps;
+    });
+    
     const windowSize = useWindowSize();
     const isMobile = windowSize.innerWidth <= 993;
-    const slides = isMobile ? 3 : 5;
     const natureHeight = isMobile ? 460 : 230
 
     return brands && typeof brands != 'undefined' ? (
@@ -28,7 +28,7 @@ const Brands = props => {
                     naturalSlideWidth={200}
                     naturalSlideHeight={natureHeight}
                     totalSlides={6}
-                    visibleSlides={slides}
+                    visibleSlides={visibleBrands}
                     orientation="horizontal"
                     dragEnabled={true}
                     touchEnabled={true}
