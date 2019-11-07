@@ -77,6 +77,16 @@
     composes: root filled;
 }
 
+.indicatorRoot {
+    height: 20px;
+    width: 20px;
+}
+
+.indicator {
+    height: 20px;
+    width: 20px;
+}
+
 @media(min-width:700px) {
     .root {
         font-size: 16px;

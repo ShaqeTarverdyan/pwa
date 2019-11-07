@@ -3,6 +3,7 @@ import { oneOf, shape, string } from 'prop-types';
 
 import { mergeClasses } from '../../classify';
 import defaultClasses from './button.css';
+import LoadingIndicator from '../LoadingIndicator/indicator';
 
 const getRootClassName = priority => `root_${priority}Priority`;
 
@@ -22,6 +23,7 @@ const Button = props => {
         classes: propClasses,
         priority,
         type,
+        inProcess,
         ...restProps
     } = props;
     const classes = mergeClasses(defaultClasses, propClasses);
@@ -30,6 +32,7 @@ const Button = props => {
     return (
         <button className={rootClassName} type={type} {...restProps}>
             <span className={classes.content}>{children}</span>
+            {inProcess && <LoadingIndicator classes={{root: classes.indicatorRoot, indicator: classes.indicator}}/>}
         </button>
     );
 };
