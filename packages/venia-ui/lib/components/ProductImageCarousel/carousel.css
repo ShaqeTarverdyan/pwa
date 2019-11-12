@@ -1,29 +1,6 @@
 .root {
     display: grid;
-    grid-template-areas:
-        'main'
-        'thumbs';
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-}
 
-.carouselContainer {
-    display: grid;
-    grid-area: main;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.imageContainer {
-    grid-area: 1 / 1 / 2 / 4;
-}
-
-.currentImage {
-    width: 100%;
-}
-
-.currentImage_placeholder {
-    composes: currentImage;
-    background-color: rgb(var(--venia-grey));
 }
 
 .previousButton,
@@ -56,19 +33,57 @@
     z-index: 1;
 }
 
-@media (min-width: 1024px) {
-    .root {
-        grid-gap: 1.5rem;
-        grid-template-areas: 'thumbs main';
-        /* These values are mirrored in JS for image sizes. Keep them in sync. */
-        grid-template-columns: 17fr 80fr;
-    }
+.carouselProvider {
+    position: relative;
+}
 
-    .previousButton,
-    .nextButton {
-        display: none;
-    }
+.slider {
+    border: 1px solid grey;
+}
 
+.leftIcon::before {
+    font-family: "pwa_icons";
+    content: "\67";
+    padding: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.rigthIcon::before {
+    font-family: "pwa_icons";
+    content: "\68";
+    padding: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.buttonGroup {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 40%;
+}
+
+.thumbnails {
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.thumbnail {
+    border: 1px solid lightslategray;
+    margin:5px;
+}
+
+.thumbnails > button {
+    width: 20%;
+}
+
+.currentImage_placeholder, .imageContainer  {
+    width: 100%;
+}
+
+@media (min-width: 700px) {
     .thumbnailList {
         align-content: start;
         grid-auto-flow: row;

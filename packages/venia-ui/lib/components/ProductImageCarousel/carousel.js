@@ -13,8 +13,14 @@ import Icon from '../Icon';
 import Image from '../Image';
 import defaultClasses from './carousel.css';
 import Thumbnail from './thumbnail';
+import { resourceUrl } from '@magento/venia-drivers';
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Dot, DotGroup, ImageWithZoom } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+
+
 
 const DEFAULT_IMAGE_WIDTH = 640;
+const DEFAULT_IMAGE_HEIGHT = 600;
 const IMAGE_SIZES = new Map();
 IMAGE_SIZES.set('small', DEFAULT_IMAGE_WIDTH);
 
@@ -91,22 +97,64 @@ const ProductImageCarousel = props => {
             />
         );
     }
-
+    
     return (
         <div className={classes.root}>
-            <div className={classes.carouselContainer}>
-                <button
-                    className={classes.previousButton}
-                    onClick={handlePrevious}
+            <div >
+                <CarouselProvider
+                    naturalSlideWidth={100}
+                    naturalSlideHeight={125}
+                    totalSlides={3}
+                    className={classes.carouselProvider}
                 >
-                    <Icon src={ChevronLeftIcon} size={40} />
-                </button>
-                {image}
-                <button className={classes.nextButton} onClick={handleNext}>
-                    <Icon src={ChevronRightIcon} size={40} />
-                </button>
+                    <Slider>
+                        {
+                            images.map((image, index) =>
+                                <Slide index={index} key={index}>
+                                    <ImageWithZoom
+                                        src={resourceUrl(image.file, {
+                                            type: 'image-product',
+                                            width: DEFAULT_IMAGE_WIDTH,
+                                            height: DEFAULT_IMAGE_HEIGHT
+                                        })}
+                                        alt='productImage'
+                                    />
+                                </Slide>
+                            )
+                        }
+
+                    </Slider>
+                    <div className={classes.thumbnails}>
+                        {
+                            images.map((image, index) =>
+                                <Dot
+                                    key={index}
+                                    children={
+                                        <Image
+                                            classes={{
+                                                image: classes.currentImage_placeholder,
+                                                root: classes.imageContainer
+                                            }}
+                                            src={resourceUrl(image.file, {
+                                                type: 'image-product',
+                                                width: 100,
+                                                height: 140
+                                            })}
+                                            alt="imageAlt"
+                                             />}
+                                    slide={index}
+                                    className={classes.thumbnail}
+                                />
+                            )
+                        }
+                    </div>
+                    <div className={classes.buttonGroup}>
+                        <ButtonBack className={classes.leftIcon} />
+                        <ButtonNext className={classes.rigthIcon} />
+                    </div>
+                </CarouselProvider>
             </div>
-            <div className={classes.thumbnailList}>{thumbnails}</div>
+
         </div>
     );
 };
