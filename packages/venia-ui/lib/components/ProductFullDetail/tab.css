@@ -1,0 +1,94 @@
+.root {
+    
+}
+
+.header {
+    display: grid;
+    border-bottom: 1px solid lightslategray;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 3rem;
+    letter-spacing: 0.06em;
+    padding: 0px 14px;
+}
+
+.header li button {
+    outline: none
+}
+
+.header li {
+    padding: 10px 20px;
+}
+
+.commonClass {
+    position: relative;
+    background-color:  #F4F4F4;
+    width: 100%;
+    text-align: start;
+    padding: 10px 10px;
+    outline: none;
+}
+
+.activeClass {
+    composes: commonClass;
+    font-weight: bold;
+}
+
+.commonClass::after {
+    content: '+';
+    float: right;
+}
+
+.activeClass::after {
+    content: '-';
+    float: right;
+}
+
+.content {
+    display: none;
+}
+
+.openedTab {
+    position: absolute;
+    top: 10px
+}
+
+
+
+@media(min-width: 700px) {
+    .content {
+        display: block;
+        margin: 3rem 0rem;
+    }
+    .addIcon {
+        display: none;
+    }
+
+    .header {
+        display: flex;
+        line-height: 4rem;
+        justify-content: center;
+        padding: 0px;
+    }
+
+    .header section {
+        padding: 10px 20px
+    }
+
+    .header li {
+        padding: 0px 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .commonClass::after {
+        content: '';
+    }
+    
+    .activeClass::after{
+        content: '';
+    }
+
+
+}
