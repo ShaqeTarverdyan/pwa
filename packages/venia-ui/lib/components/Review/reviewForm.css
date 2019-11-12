@@ -1,0 +1,39 @@
+.root {
+    display: grid;
+    grid-row-gap: 1rem;
+    padding: 2rem 0rem;
+}
+
+.root  input, .root textarea{
+    border:1px solid  rgb(var(--pwa-blue))
+}
+
+.rate {
+    display: grid;
+    align-items: center;
+    width: 180px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.submitButton {
+    composes: root_highPriority from '../Button/button.css';
+    width: 20%;
+}
+
+.message {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 143%;
+    letter-spacing: 0.08em;
+    text-align: start;
+    color: green;
+}
+
+@media(min-width: 700px) {
+    .formGroup {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 1rem;
+    }
+}

@@ -1,0 +1,32 @@
+.root {
+    display: grid;
+    grid-row-gap: 2rem;
+}
+
+.reviews {
+    display: grid;
+    grid-row-gap: 2rem;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 143%;
+    letter-spacing: 0.08em;
+    color: black;
+}
+
+.content {
+    display: grid;
+    grid-row-gap: 0.5rem;
+}
+
+.reviewForm {
+    text-align: center;
+}
+
+.title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 143%;
+    letter-spacing: 0.08em;
+}
