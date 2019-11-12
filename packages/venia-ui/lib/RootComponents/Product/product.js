@@ -35,9 +35,11 @@ const Product = () => {
         const product = data.productDetail.items[0];
         // map Magento 2.3.1 schema changes to Venia 2.0.0 proptype shape to
         // maintain backwards compatibility
-        const { description } = product;
+        const { description, short_description } = product;
         return {
             ...product,
+            short_description: 
+                typeof short_description === 'object' ? short_description.html : short_description,
             description:
                 typeof description === 'object' ? description.html : description
         };
