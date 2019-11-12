@@ -13,6 +13,6 @@ export const useFeatures = props => {
     }, [error]);
     
     return {
-        features: data.features
+        features: data && data.features
     };
 };
