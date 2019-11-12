@@ -1,9 +1,10 @@
-import { useCallback, useState, useMemo } from 'react';
+import { useCallback, useState, useMemo, useRef } from 'react';
 import { useCartContext } from '@magento/peregrine/lib/context/cart';
 
 import { appendOptionsToPayload } from '@magento/peregrine/lib/util/appendOptionsToPayload';
 import { findMatchingVariant } from '@magento/peregrine/lib/util/findMatchingProductVariant';
 import { isProductConfigurable } from '@magento/peregrine/lib/util/isProductConfigurable';
+import { useWindowSize } from '@magento/peregrine';
 
 const INITIAL_OPTION_CODES = new Map();
 const INITIAL_OPTION_SELECTIONS = new Map();
@@ -92,11 +93,13 @@ const getMediaGalleryEntries = (product, optionCodes, optionSelections) => {
 
 export const useProductFullDetail = props => {
     const { product } = props;
-
+    const windowSize = useWindowSize();
+    const isMobile = windowSize.innerWidth <= 700;
     const [{ isAddingItem }, { addItemToCart }] = useCartContext();
-
+    const tabRef = useRef(null);
     const [quantity, setQuantity] = useState(INITIAL_QUANTITY);
-
+    const [active, setActive] = useState(!isMobile && 'description' || '');
+    const [ isOpen, setIsOpen] = useState(false)
     const derivedOptionSelections = useMemo(
         () => deriveOptionSelectionsFromProduct(product),
         [product]
@@ -153,12 +156,40 @@ export const useProductFullDetail = props => {
         [setQuantity]
     );
 
+    const handleDecrement = () => {
+        if (quantity <= 0) {
+            return
+        }
+        return setQuantity(quantity - 1);
+    };
+
+    const handleIncrement = () => {
+        return setQuantity(quantity + 1);
+    };
+
+    const scrollReview = useCallback(() => {
+        setActive('reviews');
+        console.log('active', active)
+        tabRef.current.scrollIntoView({
+            behavior: 'smooth'
+        })
+    },[setActive, active, tabRef]);
+
     // Normalization object for product details we need for rendering.
     const productDetails = {
         description: product.description,
+        shortDescription: product.short_description,
         name: product.name,
         price: product.price.regularPrice.amount,
-        sku: product.sku
+        sku: product.sku,
+        configurable_options: product.configurable_options,
+        reviews_count: product.reviews_count,
+        rating_summary: product.rating_summary,
+        attributes: product.attributes,
+        available_ratings: product.available_ratings,
+        reviews: product.reviews,
+        id: product.id
+
     };
 
     return {
@@ -168,6 +199,16 @@ export const useProductFullDetail = props => {
         isAddToCartDisabled: isAddingItem || isMissingOptions,
         mediaGalleryEntries,
         productDetails,
-        quantity
+        quantity,
+        handleDecrement,
+        handleIncrement,
+        active,
+        setActive,
+        isOpen,
+        setIsOpen,
+        scrollReview,
+        tabRef
     };
 };
+
+

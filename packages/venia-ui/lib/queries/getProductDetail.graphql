@@ -2,6 +2,7 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
     productDetail: products(filter: { url_key: { eq: $urlKey } }) {
         items {
             __typename
+            id
             sku
             name
             price {
@@ -12,7 +13,12 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
                     }
                 }
             }
+            rating_summary
+            reviews_count
             description {
+                html
+            }
+            short_description {
                 html
             }
             media_gallery_entries {
@@ -20,6 +26,32 @@ query productDetail($urlKey: String, $onServer: Boolean!) {
                 position
                 disabled
                 file
+            }
+                        reviews {
+                created_at
+                review_id
+                title
+                nickname
+                detail
+                ratings {
+                    value
+                    rating_code
+                    percent
+                }
+            }
+            attributes {
+                attribute_code
+                attribute_value
+                attribute_label
+            }
+            available_ratings {
+              rating_id
+              rating_code
+              options {
+                option_id
+                code
+                value
+              }
             }
             ... on ConfigurableProduct {
                 configurable_options {
