@@ -29,8 +29,8 @@ const Footer = props => {
                 subtotal={subtotal}
             />
             <div className={classes.buttonGroup}>
-                <Button priority='normal'><Link to="/cart">View Cart</Link></Button>
-                <Button priority='high'>Checkout</Button>
+                <Link to="/cart"><Button priority='normal' classes={{root_normalPriority: classes.cartButton}}>View Cart</Button></Link>
+                <Link to="/checkout"><Button priority='high'  classes={{root_highPriority: classes.checkoutButton}}>Checkout</Button></Link>
             </div>
         </div>
     );

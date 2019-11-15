@@ -1,5 +1,6 @@
 .root {
     position: relative;
+    text-align: center;
 }
 
 .heading {
@@ -19,18 +20,8 @@
     align-content: start;
     animation-duration: 224ms;
     animation-iteration-count: 1;
-    animation-name: enter;
+    animation-name: flow-enter-1me;
     background-color: white;
-    bottom: 5rem;
-    box-shadow: 0 -1px rgb(var(--venia-border));
-    display: grid;
-    grid-gap: 0.5rem;
-    left: 0;
-    max-height: calc(100vh - 8.5rem);
-    overflow: auto;
-    padding: 0 1.5rem;
-    position: absolute;
-    right: 0;
 }
 
 .footer {
@@ -44,6 +35,15 @@
     justify-content: center;
     justify-items: center;
     position: relative;
+}
+
+.title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: 0.08em;
+
 }
 
 @keyframes enter {

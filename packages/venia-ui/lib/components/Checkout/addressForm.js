@@ -3,7 +3,6 @@ import { Form } from 'informed';
 import { array, bool, func, object, shape, string } from 'prop-types';
 
 import { mergeClasses } from '../../classify';
-import Button from '../Button';
 import defaultClasses from './addressForm.css';
 import {
     validateEmail,
@@ -15,9 +14,11 @@ import combine from '../../util/combineValidators';
 import TextInput from '../TextInput';
 import Field from '../Field';
 import { useAddressForm } from '@magento/peregrine/lib/talons/Checkout/useAddressForm';
+import Select from '../Select';
 
 const fields = [
     'city',
+    'country',
     'email',
     'firstname',
     'lastname',
@@ -28,7 +29,13 @@ const fields = [
 ];
 
 const AddressForm = props => {
-    const { countries, error, isSubmitting, onCancel, onSubmit } = props;
+    const {  
+        onCancel, 
+        onSubmit,
+        checkout,
+        handlesubmitShippingAddress,      
+     } = props;
+     const { countries } = checkout;
 
     const talonProps = useAddressForm({
         fields,
@@ -37,8 +44,8 @@ const AddressForm = props => {
         onSubmit
     });
 
-    const { handleCancel, handleSubmit, initialValues } = talonProps;
-
+    const { handleSubmit, initialValues } = talonProps;
+    const initialValue = countries.filter(country => country.full_name_locale === 'Armenia');
     const classes = mergeClasses(defaultClasses, props.classes);
     return (
         <Form
@@ -47,8 +54,6 @@ const AddressForm = props => {
             onSubmit={handleSubmit}
         >
             <div className={classes.body}>
-                <h2 className={classes.heading}>Shipping Address</h2>
-                <div className={classes.validationMessage}>{error}</div>
                 <div className={classes.firstname}>
                     <Field id={classes.firstname} label="First Name">
                         <TextInput
@@ -94,6 +99,17 @@ const AddressForm = props => {
                         />
                     </Field>
                 </div>
+                <div className={classes.country}>
+                    <Field id={classes.country} label="Country">
+                        <Select
+                            field="Country"
+                            initialValue={initialValue[0].full_name_locale}
+                            items={countries}
+                            validate={isRequired}
+                            fieldState={{value: 'US'}}
+                        />
+                    </Field>
+                </div>
                 <div className={classes.region_code}>
                     <Field id={classes.region_code} label="State">
                         <TextInput
@@ -102,7 +118,7 @@ const AddressForm = props => {
                             validate={combine([
                                 isRequired,
                                 [hasLengthExactly, 2],
-                                [validateRegionCode, countries]
+                                [validateRegionCode]
                             ])}
                         />
                     </Field>
@@ -125,12 +141,7 @@ const AddressForm = props => {
                         />
                     </Field>
                 </div>
-            </div>
-            <div className={classes.footer}>
-                <Button onClick={handleCancel}>Cancel</Button>
-                <Button type="submit" priority="high" disabled={isSubmitting}>
-                    Use Address
-                </Button>
+                <button type="submit">Submit</button>
             </div>
         </Form>
     );

@@ -29,8 +29,8 @@ export class RadioGroup extends Component {
     render() {
         const { classes, fieldState, items, message, ...rest } = this.props;
 
-        const options = items.map(({ label, value }) => (
-            <Radio key={value} label={label} value={value} />
+        const options = items.map(({ label, value , amount, title}) => (
+            <Radio key={value} label={label || title} value={value || amount} />
         ));
 
         return (

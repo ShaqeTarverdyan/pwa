@@ -38,21 +38,20 @@ export const useShippingForm = props => {
     const handleSubmit = useCallback(
         ({ shippingMethod }) => {
             const selectedShippingMethod = availableShippingMethods.find(
-                ({ carrier_code }) => carrier_code === shippingMethod
+                ({ method_code }) => method_code === shippingMethod
             );
 
             if (!selectedShippingMethod) {
                 console.warn(
                     `Could not find the selected shipping method ${selectedShippingMethod} in the list of available shipping methods.`
                 );
-                onCancel();
             } else {
                 onSubmit({
                     shippingMethod: selectedShippingMethod
                 });
             }
         },
-        [availableShippingMethods, onCancel, onSubmit]
+        [availableShippingMethods, onSubmit]
     );
     return {
         handleCancel: onCancel,

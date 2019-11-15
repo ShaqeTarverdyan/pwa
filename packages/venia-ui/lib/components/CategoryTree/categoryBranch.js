@@ -60,9 +60,8 @@ const Branch = props => {
             }
             {
                 submenu_type && megamenu_block && !isMobile ? 
-                    <div className={classes[submenu_type]}>
                         <CmsBlock identifiers={[megamenu_block]}/>
-                    </div> :
+                     :
                     <div className={style}>
                     <CategoryTree
                         categories={categories}

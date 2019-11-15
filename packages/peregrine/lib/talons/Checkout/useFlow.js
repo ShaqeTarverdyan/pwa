@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useCartContext } from '@magento/peregrine/lib/context/cart';
 import { useCheckoutContext } from '@magento/peregrine/lib/context/checkout';
 import isObjectEmpty from '../../util/isObjectEmpty';
@@ -25,6 +25,7 @@ const isCheckoutReady = checkout => {
 };
 
 export const useFlow = props => {
+    const [step, setStep] = useState('loading')
     const [cartState] = useCartContext();
     const [
         checkoutState,
@@ -37,12 +38,20 @@ export const useFlow = props => {
             submitShippingMethod
         }
     ] = useCheckoutContext();
-    const { onSubmitError, setStep } = props;
-
+    const { onSubmitError } = props;
+    
     const handleBeginCheckout = useCallback(async () => {
         await beginCheckout();
-        setStep('form');
-    }, [beginCheckout, setStep]);
+    }, [beginCheckout]);
+
+    const handlesubmitShippingAddress = useCallback(async () => {
+        console.log('submited shipping addres')
+        await submitShippingAddress();
+    }, [submitShippingAddress]);
+
+    const handlesubmitShippingForm = useCallback(async () => {
+        await submitShippingMethod();
+    }, [submitShippingMethod]);
 
     const handleCancelCheckout = useCallback(async () => {
         await cancelCheckout();
@@ -73,6 +82,10 @@ export const useFlow = props => {
         handleBeginCheckout,
         handleCancelCheckout,
         handleCloseReceipt,
-        handleSubmitOrder
+        handleSubmitOrder,
+        step,
+        setStep,
+        handlesubmitShippingAddress,
+        handlesubmitShippingForm
     };
 };

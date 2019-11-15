@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { func, shape, string } from 'prop-types';
 
 import { mergeClasses } from '../../classify';
@@ -13,13 +13,20 @@ import Icon from '../Icon';
 import { AlertCircle as AlertCircleIcon } from 'react-feather';
 import { useFlow } from '@magento/peregrine/lib/talons/Checkout/useFlow';
 const ErrorIcon = <Icon src={AlertCircleIcon} attrs={{ width: 18 }} />;
+import BillingStep from './billingStep';
+import ShippingStep from './shippingStep';
+import LoadingIndicator from '../LoadingIndicator/indicator';
 
 /**
  * This Flow component's primary purpose is to take relevant state and actions
  * and pass them to the current checkout step.
  */
 const Flow = props => {
-    const { step } = props;
+    // const { step } = props;
+    useEffect(() => {
+            handleBeginCheckout()
+    }, []);
+
     const [, { addToast }] = useToasts();
     const onSubmitError = useCallback(() => {
         addToast({
@@ -37,6 +44,11 @@ const Flow = props => {
     });
 
     const {
+        availableShippingMethods,
+        isSubmitting,
+        billingAddress,
+        shippingAddressError,
+        shippingTitle,
         cartState,
         checkoutDisabled,
         checkoutState,
@@ -47,63 +59,60 @@ const Flow = props => {
         handleBeginCheckout,
         handleCancelCheckout,
         handleCloseReceipt,
-        handleSubmitOrder
+        handleSubmitOrder,
+        step,
+        setStep,
+        handlesubmitShippingAddress,
+        handlesubmitShippingForm
     } = talonProps;
 
     const {
-        availableShippingMethods,
-        billingAddress,
-        isSubmitting,
         paymentData,
-        shippingAddress,
-        shippingAddressError,
         shippingMethod,
-        shippingTitle
+        shippingAddress,
     } = checkoutState;
-
     const classes = mergeClasses(defaultClasses, props.classes);
+
+    useEffect(() => {
+       if(!isObjectEmpty(cartState.details && step == 'loading'))  {
+           setStep('shippingStep')
+        }
+    },[]);
 
     let child;
     switch (step) {
-        case 'cart': {
-            child = (
-                <div className={classes.footer}>
-                    <CheckoutButton
-                        disabled={checkoutDisabled}
-                        onClick={handleBeginCheckout}
-                    />
-                </div>
-            );
+        case 'loading': {
+            child = <LoadingIndicator/>;
             break;
         }
-        case 'form': {
+        case 'shippingStep': {
             const stepProps = {
-                availableShippingMethods,
-                billingAddress,
-                cancelCheckout: handleCancelCheckout,
-                cart: cartState,
-                checkout: checkoutState,
-                hasPaymentMethod: !!paymentData && !isObjectEmpty(paymentData),
-                hasShippingAddress:
-                    !!shippingAddress && !isObjectEmpty(shippingAddress),
-                hasShippingMethod:
-                    !!shippingMethod && !isObjectEmpty(shippingMethod),
-                isSubmitting,
-                paymentData,
-                ready: isReady,
-                shippingAddress,
-                shippingAddressError,
-                shippingMethod,
-                shippingTitle,
-                submitShippingAddress,
-                submitOrder: handleSubmitOrder,
-                submitPaymentMethodAndBillingAddress,
-                submitShippingMethod
+                        availableShippingMethods,
+                        billingAddress,
+                        cancelCheckout: handleCancelCheckout,
+                        cart: cartState,
+                        checkout: checkoutState,
+                        hasPaymentMethod: !!paymentData && !isObjectEmpty(paymentData),
+                        hasShippingAddress:
+                            !!shippingAddress && !isObjectEmpty(shippingAddress),
+                        hasShippingMethod:
+                            !!shippingMethod && !isObjectEmpty(shippingMethod),
+                        isSubmitting,
+                        paymentData,
+                        ready: isReady,
+                        shippingAddress,
+                        shippingAddressError,
+                        shippingMethod,
+                        shippingTitle,
+                        submitShippingAddress,
+                        submitPaymentMethodAndBillingAddress,
+                        submitShippingMethod,
+                        setStep        
             };
-
-            child = <Form {...stepProps} />;
+            child = <ShippingStep {...stepProps}/>;
             break;
         }
+       
         case 'receipt': {
             child = <Receipt onClose={handleCloseReceipt} />;
             break;
@@ -113,7 +122,10 @@ const Flow = props => {
         }
     }
 
-    return <div className={classes.root}>{child}</div>;
+    return <div className={classes.root}>
+        <h1 className={classes.title}>Secure Checkout</h1>
+        {child}
+    </div>;
 };
 
 Flow.propTypes = {

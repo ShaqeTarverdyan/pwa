@@ -32,12 +32,11 @@ class Select extends Component {
 
     render() {
         const { classes, fieldState, items, message, ...rest } = this.props;
-        const options = items.map(({ label, value }) => (
+        const options = items.map(({ label, value, full_name_locale }) => (
             <Option key={value} value={value}>
-                {label || (value != null ? value : '')}
+                {label || (value != null ? value : '' || full_name_locale)}
             </Option>
         ));
-
         return (
             <Fragment>
                 <FieldIcons after={arrow}>

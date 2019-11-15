@@ -22,3 +22,13 @@
     grid-row-gap: 10px;
     padding: 10px;
 }
+
+.cartButton {
+    composes: root_normalPriority from '../Button/button.css';
+    width: 100%;
+}
+
+.checkoutButton {
+    composes: root_highPriority from '../Button/button.css';
+    width: 100%;
+}

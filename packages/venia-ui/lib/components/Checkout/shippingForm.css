@@ -1,4 +1,5 @@
 .root {
+    border: 1px solid #F5F5F5;
 }
 
 .heading {
@@ -16,4 +17,23 @@
 /* fields */
 .shippingMethod {
     grid-column-end: span 1;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    text-align: start;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 3rem;
+    letter-spacing: 0.06em;
+
+}
+
+.method {
+    padding: 1rem;
 }

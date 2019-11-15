@@ -1,0 +1,18 @@
+.root h1 {
+    background-color: #F4F4F4;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 2.5rem;
+    letter-spacing: 0.06em;
+}
+
+@media(min-width: 700px) {
+    .root {
+        max-width: var(--pwa-desktop-max-width);
+        margin: 5rem auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 3rem;
+    }
+}
